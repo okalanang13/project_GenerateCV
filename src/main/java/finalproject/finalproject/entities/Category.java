@@ -12,9 +12,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,52 +29,48 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author ASUS
  */
 @Entity
-@Table(name = "subdistrict")
+@Table(name = "category")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Subdistrict.findAll", query = "SELECT s FROM Subdistrict s")
-    , @NamedQuery(name = "Subdistrict.findById", query = "SELECT s FROM Subdistrict s WHERE s.id = :id")
-    , @NamedQuery(name = "Subdistrict.findByName", query = "SELECT s FROM Subdistrict s WHERE s.name = :name")
-    , @NamedQuery(name = "Subdistrict.findByIsDelete", query = "SELECT s FROM Subdistrict s WHERE s.isDelete = :isDelete")})
-public class Subdistrict implements Serializable {
+    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
+    , @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id")
+    , @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name")
+    , @NamedQuery(name = "Category.findByIsDelete", query = "SELECT c FROM Category c WHERE c.isDelete = :isDelete")})
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "id")
-    private String id;
+    private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 20)
     @Column(name = "name")
     private String name;
-    @Column(name = "isDelete")
+    @Column(name = "is_delete")
     private Character isDelete;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSubdistrict", fetch = FetchType.LAZY)
-    private List<Village> villageList;
-    @JoinColumn(name = "id_district", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private District idDistrict;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategory", fetch = FetchType.LAZY)
+    private List<Skill> skillList;
 
-    public Subdistrict() {
+    public Category() {
     }
 
-    public Subdistrict(String id) {
+    public Category(Integer id) {
         this.id = id;
     }
 
-    public Subdistrict(String id, String name) {
+    public Category(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -95,20 +91,12 @@ public class Subdistrict implements Serializable {
     }
 
     @XmlTransient
-    public List<Village> getVillageList() {
-        return villageList;
+    public List<Skill> getSkillList() {
+        return skillList;
     }
 
-    public void setVillageList(List<Village> villageList) {
-        this.villageList = villageList;
-    }
-
-    public District getIdDistrict() {
-        return idDistrict;
-    }
-
-    public void setIdDistrict(District idDistrict) {
-        this.idDistrict = idDistrict;
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
     }
 
     @Override
@@ -121,10 +109,10 @@ public class Subdistrict implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Subdistrict)) {
+        if (!(object instanceof Category)) {
             return false;
         }
-        Subdistrict other = (Subdistrict) object;
+        Category other = (Category) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,7 +121,7 @@ public class Subdistrict implements Serializable {
 
     @Override
     public String toString() {
-        return "finalproject.finalproject.entities.Subdistrict[ id=" + id + " ]";
+        return "finalproject.finalproject.entities.Category[ id=" + id + " ]";
     }
     
 }

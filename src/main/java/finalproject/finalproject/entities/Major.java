@@ -13,8 +13,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,15 +27,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author ASUS
  */
 @Entity
-@Table(name = "village")
+@Table(name = "major")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Village.findAll", query = "SELECT v FROM Village v")
-    , @NamedQuery(name = "Village.findById", query = "SELECT v FROM Village v WHERE v.id = :id")
-    , @NamedQuery(name = "Village.findByName", query = "SELECT v FROM Village v WHERE v.name = :name")
-    , @NamedQuery(name = "Village.findByPostalCode", query = "SELECT v FROM Village v WHERE v.postalCode = :postalCode")
-    , @NamedQuery(name = "Village.findByIsDelete", query = "SELECT v FROM Village v WHERE v.isDelete = :isDelete")})
-public class Village implements Serializable {
+    @NamedQuery(name = "Major.findAll", query = "SELECT m FROM Major m")
+    , @NamedQuery(name = "Major.findById", query = "SELECT m FROM Major m WHERE m.id = :id")
+    , @NamedQuery(name = "Major.findByName", query = "SELECT m FROM Major m WHERE m.name = :name")
+    , @NamedQuery(name = "Major.findByIsDelete", query = "SELECT m FROM Major m WHERE m.isDelete = :isDelete")})
+public class Major implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,35 +45,24 @@ public class Village implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 20)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "postalCode")
-    private String postalCode;
     @Column(name = "isDelete")
     private Character isDelete;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
-    private List<College> collegeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
-    private List<Employee> employeeList;
-    @JoinColumn(name = "id_subdistrict", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Subdistrict idSubdistrict;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMajor", fetch = FetchType.LAZY)
+    private List<Education> educationList;
 
-    public Village() {
+    public Major() {
     }
 
-    public Village(String id) {
+    public Major(String id) {
         this.id = id;
     }
 
-    public Village(String id, String name, String postalCode) {
+    public Major(String id, String name) {
         this.id = id;
         this.name = name;
-        this.postalCode = postalCode;
     }
 
     public String getId() {
@@ -95,14 +81,6 @@ public class Village implements Serializable {
         this.name = name;
     }
 
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
     public Character getIsDelete() {
         return isDelete;
     }
@@ -112,29 +90,12 @@ public class Village implements Serializable {
     }
 
     @XmlTransient
-    public List<College> getCollegeList() {
-        return collegeList;
+    public List<Education> getEducationList() {
+        return educationList;
     }
 
-    public void setCollegeList(List<College> collegeList) {
-        this.collegeList = collegeList;
-    }
-
-    @XmlTransient
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
-
-    public Subdistrict getIdSubdistrict() {
-        return idSubdistrict;
-    }
-
-    public void setIdSubdistrict(Subdistrict idSubdistrict) {
-        this.idSubdistrict = idSubdistrict;
+    public void setEducationList(List<Education> educationList) {
+        this.educationList = educationList;
     }
 
     @Override
@@ -147,10 +108,10 @@ public class Village implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Village)) {
+        if (!(object instanceof Major)) {
             return false;
         }
-        Village other = (Village) object;
+        Major other = (Major) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -159,7 +120,7 @@ public class Village implements Serializable {
 
     @Override
     public String toString() {
-        return "finalproject.finalproject.entities.Village[ id=" + id + " ]";
+        return "finalproject.finalproject.entities.Major[ id=" + id + " ]";
     }
     
 }

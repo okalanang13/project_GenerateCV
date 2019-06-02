@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author RR17
+ * @author ASUS
  */
 @Entity
 @Table(name = "province")
@@ -48,9 +48,7 @@ public class Province implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "is_delete")
+    @Column(name = "isDelete")
     private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProvince", fetch = FetchType.LAZY)
     private List<District> districtList;
@@ -62,10 +60,9 @@ public class Province implements Serializable {
         this.id = id;
     }
 
-    public Province(String id, String name, Character isDelete) {
+    public Province(String id, String name) {
         this.id = id;
         this.name = name;
-        this.isDelete = isDelete;
     }
 
     public String getId() {

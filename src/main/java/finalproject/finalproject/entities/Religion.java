@@ -6,20 +6,25 @@
 package finalproject.finalproject.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author RR17
+ * @author ASUS
  */
 @Entity
 @Table(name = "religion")
@@ -43,10 +48,10 @@ public class Religion implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "is_delete")
     private Character isDelete;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRegion", fetch = FetchType.LAZY)
+    private List<Employee> employeeList;
 
     public Religion() {
     }
@@ -55,10 +60,9 @@ public class Religion implements Serializable {
         this.id = id;
     }
 
-    public Religion(String id, String name, Character isDelete) {
+    public Religion(String id, String name) {
         this.id = id;
         this.name = name;
-        this.isDelete = isDelete;
     }
 
     public String getId() {
@@ -83,6 +87,15 @@ public class Religion implements Serializable {
 
     public void setIsDelete(Character isDelete) {
         this.isDelete = isDelete;
+    }
+
+    @XmlTransient
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     @Override

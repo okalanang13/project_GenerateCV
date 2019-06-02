@@ -29,15 +29,16 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author ASUS
  */
 @Entity
-@Table(name = "village")
+@Table(name = "college")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Village.findAll", query = "SELECT v FROM Village v")
-    , @NamedQuery(name = "Village.findById", query = "SELECT v FROM Village v WHERE v.id = :id")
-    , @NamedQuery(name = "Village.findByName", query = "SELECT v FROM Village v WHERE v.name = :name")
-    , @NamedQuery(name = "Village.findByPostalCode", query = "SELECT v FROM Village v WHERE v.postalCode = :postalCode")
-    , @NamedQuery(name = "Village.findByIsDelete", query = "SELECT v FROM Village v WHERE v.isDelete = :isDelete")})
-public class Village implements Serializable {
+    @NamedQuery(name = "College.findAll", query = "SELECT c FROM College c")
+    , @NamedQuery(name = "College.findById", query = "SELECT c FROM College c WHERE c.id = :id")
+    , @NamedQuery(name = "College.findByName", query = "SELECT c FROM College c WHERE c.name = :name")
+    , @NamedQuery(name = "College.findByPhone", query = "SELECT c FROM College c WHERE c.phone = :phone")
+    , @NamedQuery(name = "College.findByAddress", query = "SELECT c FROM College c WHERE c.address = :address")
+    , @NamedQuery(name = "College.findByIsDelete", query = "SELECT c FROM College c WHERE c.isDelete = :isDelete")})
+public class College implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,35 +49,40 @@ public class Village implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 20)
     @Column(name = "name")
     private String name;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "postalCode")
-    private String postalCode;
+    @Size(min = 1, max = 15)
+    @Column(name = "phone")
+    private String phone;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "address")
+    private String address;
     @Column(name = "isDelete")
     private Character isDelete;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
-    private List<College> collegeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
-    private List<Employee> employeeList;
-    @JoinColumn(name = "id_subdistrict", referencedColumnName = "id")
+    @JoinColumn(name = "id_village", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Subdistrict idSubdistrict;
+    private Village idVillage;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCollege", fetch = FetchType.LAZY)
+    private List<Education> educationList;
 
-    public Village() {
+    public College() {
     }
 
-    public Village(String id) {
+    public College(String id) {
         this.id = id;
     }
 
-    public Village(String id, String name, String postalCode) {
+    public College(String id, String name, String phone, String address) {
         this.id = id;
         this.name = name;
-        this.postalCode = postalCode;
+        this.phone = phone;
+        this.address = address;
     }
 
     public String getId() {
@@ -95,12 +101,20 @@ public class Village implements Serializable {
         this.name = name;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Character getIsDelete() {
@@ -111,30 +125,21 @@ public class Village implements Serializable {
         this.isDelete = isDelete;
     }
 
+    public Village getIdVillage() {
+        return idVillage;
+    }
+
+    public void setIdVillage(Village idVillage) {
+        this.idVillage = idVillage;
+    }
+
     @XmlTransient
-    public List<College> getCollegeList() {
-        return collegeList;
+    public List<Education> getEducationList() {
+        return educationList;
     }
 
-    public void setCollegeList(List<College> collegeList) {
-        this.collegeList = collegeList;
-    }
-
-    @XmlTransient
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
-
-    public Subdistrict getIdSubdistrict() {
-        return idSubdistrict;
-    }
-
-    public void setIdSubdistrict(Subdistrict idSubdistrict) {
-        this.idSubdistrict = idSubdistrict;
+    public void setEducationList(List<Education> educationList) {
+        this.educationList = educationList;
     }
 
     @Override
@@ -147,10 +152,10 @@ public class Village implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Village)) {
+        if (!(object instanceof College)) {
             return false;
         }
-        Village other = (Village) object;
+        College other = (College) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -159,7 +164,7 @@ public class Village implements Serializable {
 
     @Override
     public String toString() {
-        return "finalproject.finalproject.entities.Village[ id=" + id + " ]";
+        return "finalproject.finalproject.entities.College[ id=" + id + " ]";
     }
     
 }

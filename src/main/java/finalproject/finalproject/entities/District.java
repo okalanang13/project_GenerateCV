@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author RR17
+ * @author ASUS
  */
 @Entity
 @Table(name = "district")
@@ -50,7 +50,7 @@ public class District implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "name")
     private String name;
-    @Column(name = "is_delete")
+    @Column(name = "isDelete")
     private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDistrict", fetch = FetchType.LAZY)
     private List<Subdistrict> subdistrictList;

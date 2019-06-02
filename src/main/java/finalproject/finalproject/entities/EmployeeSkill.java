@@ -6,84 +6,82 @@
 package finalproject.finalproject.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author ASUS
  */
 @Entity
-@Table(name = "subdistrict")
+@Table(name = "employee_skill")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Subdistrict.findAll", query = "SELECT s FROM Subdistrict s")
-    , @NamedQuery(name = "Subdistrict.findById", query = "SELECT s FROM Subdistrict s WHERE s.id = :id")
-    , @NamedQuery(name = "Subdistrict.findByName", query = "SELECT s FROM Subdistrict s WHERE s.name = :name")
-    , @NamedQuery(name = "Subdistrict.findByIsDelete", query = "SELECT s FROM Subdistrict s WHERE s.isDelete = :isDelete")})
-public class Subdistrict implements Serializable {
+    @NamedQuery(name = "EmployeeSkill.findAll", query = "SELECT e FROM EmployeeSkill e")
+    , @NamedQuery(name = "EmployeeSkill.findById", query = "SELECT e FROM EmployeeSkill e WHERE e.id = :id")
+    , @NamedQuery(name = "EmployeeSkill.findByRating", query = "SELECT e FROM EmployeeSkill e WHERE e.rating = :rating")
+    , @NamedQuery(name = "EmployeeSkill.findByIsDelete", query = "SELECT e FROM EmployeeSkill e WHERE e.isDelete = :isDelete")})
+public class EmployeeSkill implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "id")
-    private String id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "name")
-    private String name;
-    @Column(name = "isDelete")
+    @Column(name = "rating")
+    private String rating;
+    @Column(name = "is_delete")
     private Character isDelete;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSubdistrict", fetch = FetchType.LAZY)
-    private List<Village> villageList;
-    @JoinColumn(name = "id_district", referencedColumnName = "id")
+    @JoinColumn(name = "id_employee", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private District idDistrict;
+    private Employee idEmployee;
+    @JoinColumn(name = "id_skill", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Skill idSkill;
 
-    public Subdistrict() {
+    public EmployeeSkill() {
     }
 
-    public Subdistrict(String id) {
+    public EmployeeSkill(Integer id) {
         this.id = id;
     }
 
-    public Subdistrict(String id, String name) {
+    public EmployeeSkill(Integer id, String rating) {
         this.id = id;
-        this.name = name;
+        this.rating = rating;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRating() {
+        return rating;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public Character getIsDelete() {
@@ -94,21 +92,20 @@ public class Subdistrict implements Serializable {
         this.isDelete = isDelete;
     }
 
-    @XmlTransient
-    public List<Village> getVillageList() {
-        return villageList;
+    public Employee getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setVillageList(List<Village> villageList) {
-        this.villageList = villageList;
+    public void setIdEmployee(Employee idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
-    public District getIdDistrict() {
-        return idDistrict;
+    public Skill getIdSkill() {
+        return idSkill;
     }
 
-    public void setIdDistrict(District idDistrict) {
-        this.idDistrict = idDistrict;
+    public void setIdSkill(Skill idSkill) {
+        this.idSkill = idSkill;
     }
 
     @Override
@@ -121,10 +118,10 @@ public class Subdistrict implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Subdistrict)) {
+        if (!(object instanceof EmployeeSkill)) {
             return false;
         }
-        Subdistrict other = (Subdistrict) object;
+        EmployeeSkill other = (EmployeeSkill) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,7 +130,7 @@ public class Subdistrict implements Serializable {
 
     @Override
     public String toString() {
-        return "finalproject.finalproject.entities.Subdistrict[ id=" + id + " ]";
+        return "finalproject.finalproject.entities.EmployeeSkill[ id=" + id + " ]";
     }
     
 }

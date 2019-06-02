@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico/}">
-        <title>Skills</title>
+        <title>Category Skills</title>
         <link rel="stylesheet" th:href="@{/dist/css/bootstrap.min.css}"  media="screen"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" th:href="@{/dist/font-awesome/css/font-awesome.min.css}">
@@ -83,7 +83,7 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Data Skills</h1>
+                        <h1 class="h2">Data Category Skills</h1>
 
                         <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-actor"><i class="fa fa-plus-circle"></i>
                             Add Data</button>
@@ -94,17 +94,21 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Category</th>
                                 <th>IsDelete</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each = "data:${dataSkill}">
+                            <!--                            <tr th:each = "data:${dataReligion}">
+                                                            <td id="id" th:text="${data.id}"></td>
+                                                            <td id="name" th:text="${data.name}"></td>
+                                                            <td id="isDelete" th:text="${data.isDelete}"></td>-->
+
+                            <tr th:each = "data:${dataCategory}">
                                 <td id="id" th:text="${data.id}"></td>
-                                <td id="name" th:text="${data.name}"></td>
-                                <td id="name" th:text="${data.idCategory.id}"></td>
+                                <td id="firstName" th:text="${data.name}"></td>
                                 <td id="isDelete" th:text="${data.isDelete}"></td>
+
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-actor"><i class="fa fa-edit"></i>
                                         Edit</button>

@@ -8,6 +8,7 @@ package finalproject.finalproject.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author RR17
+ * @author ASUS
  */
 @Entity
 @Table(name = "employee")
@@ -53,12 +54,12 @@ public class Employee implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "first_name")
+    @Column(name = "firstName")
     private String firstName;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     private String lastName;
     @Basic(optional = false)
     @NotNull
@@ -81,21 +82,37 @@ public class Employee implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "address")
     private String address;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "is_delete")
+    @Column(name = "isDelete")
     private Character isDelete;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<Achievement> achievementList;
     @OneToMany(mappedBy = "idManager", fetch = FetchType.LAZY)
     private List<Employee> employeeList;
     @JoinColumn(name = "id_manager", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Employee idManager;
-    @JoinColumn(name = "id_religion", referencedColumnName = "id")
+    @JoinColumn(name = "id_region", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Religion idReligion;
+    private Religion idRegion;
     @JoinColumn(name = "id_village", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Village idVillage;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<Experience> experienceList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<EmployeeEducation> employeeEducationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<EmployeeTraining> employeeTrainingList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<EmployeeLanguage> employeeLanguageList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<WorkAssignment> workAssignmentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<EmployeeCertification> employeeCertificationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<Organization> organizationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<EmployeeSkill> employeeSkillList;
 
     public Employee() {
     }
@@ -104,7 +121,7 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public Employee(Integer id, String firstName, String lastName, Character gender, String email, String phone, String address, Character isDelete) {
+    public Employee(Integer id, String firstName, String lastName, Character gender, String email, String phone, String address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -112,7 +129,6 @@ public class Employee implements Serializable {
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.isDelete = isDelete;
     }
 
     public Integer getId() {
@@ -180,6 +196,15 @@ public class Employee implements Serializable {
     }
 
     @XmlTransient
+    public List<Achievement> getAchievementList() {
+        return achievementList;
+    }
+
+    public void setAchievementList(List<Achievement> achievementList) {
+        this.achievementList = achievementList;
+    }
+
+    @XmlTransient
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
@@ -196,12 +221,12 @@ public class Employee implements Serializable {
         this.idManager = idManager;
     }
 
-    public Religion getIdReligion() {
-        return idReligion;
+    public Religion getIdRegion() {
+        return idRegion;
     }
 
-    public void setIdReligion(Religion idReligion) {
-        this.idReligion = idReligion;
+    public void setIdRegion(Religion idRegion) {
+        this.idRegion = idRegion;
     }
 
     public Village getIdVillage() {
@@ -210,6 +235,78 @@ public class Employee implements Serializable {
 
     public void setIdVillage(Village idVillage) {
         this.idVillage = idVillage;
+    }
+
+    @XmlTransient
+    public List<Experience> getExperienceList() {
+        return experienceList;
+    }
+
+    public void setExperienceList(List<Experience> experienceList) {
+        this.experienceList = experienceList;
+    }
+
+    @XmlTransient
+    public List<EmployeeEducation> getEmployeeEducationList() {
+        return employeeEducationList;
+    }
+
+    public void setEmployeeEducationList(List<EmployeeEducation> employeeEducationList) {
+        this.employeeEducationList = employeeEducationList;
+    }
+
+    @XmlTransient
+    public List<EmployeeTraining> getEmployeeTrainingList() {
+        return employeeTrainingList;
+    }
+
+    public void setEmployeeTrainingList(List<EmployeeTraining> employeeTrainingList) {
+        this.employeeTrainingList = employeeTrainingList;
+    }
+
+    @XmlTransient
+    public List<EmployeeLanguage> getEmployeeLanguageList() {
+        return employeeLanguageList;
+    }
+
+    public void setEmployeeLanguageList(List<EmployeeLanguage> employeeLanguageList) {
+        this.employeeLanguageList = employeeLanguageList;
+    }
+
+    @XmlTransient
+    public List<WorkAssignment> getWorkAssignmentList() {
+        return workAssignmentList;
+    }
+
+    public void setWorkAssignmentList(List<WorkAssignment> workAssignmentList) {
+        this.workAssignmentList = workAssignmentList;
+    }
+
+    @XmlTransient
+    public List<EmployeeCertification> getEmployeeCertificationList() {
+        return employeeCertificationList;
+    }
+
+    public void setEmployeeCertificationList(List<EmployeeCertification> employeeCertificationList) {
+        this.employeeCertificationList = employeeCertificationList;
+    }
+
+    @XmlTransient
+    public List<Organization> getOrganizationList() {
+        return organizationList;
+    }
+
+    public void setOrganizationList(List<Organization> organizationList) {
+        this.organizationList = organizationList;
+    }
+
+    @XmlTransient
+    public List<EmployeeSkill> getEmployeeSkillList() {
+        return employeeSkillList;
+    }
+
+    public void setEmployeeSkillList(List<EmployeeSkill> employeeSkillList) {
+        this.employeeSkillList = employeeSkillList;
     }
 
     @Override
