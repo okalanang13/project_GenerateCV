@@ -22,34 +22,38 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class MainController {
+
     @Autowired
     private ReligionService religionService;
-    
+
     @Autowired
     private ReligionRepository religionRepository;
-    
+
     @Autowired
     private EmployeeService employeeService;
-    
+
     @Autowired
     private EmployeeRepository employeeRepository;
-    
+
     @Autowired
     private VillageService villageService;
-    
+
     @Autowired
     private VillageRepository villageRepository;
-  
 
 //    @GetMapping("/")
 //    public String index(Model model) {
 //        model.addAttribute("dataReligion", religionService.findAllReligion());
 //        return "index";
 //    }
-    
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
-        return "index";
+//    @GetMapping("/")
+//    public String index(Model model) {
+//        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
+//        return "index";
+//    }
+    @GetMapping({"/","/dashboard"})
+    public String dashboard() {
+
+        return "dashboard";
     }
 }
