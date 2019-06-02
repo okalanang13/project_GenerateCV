@@ -3,13 +3,13 @@ package finalproject.finalproject.services;
 import finalproject.finalproject.entities.Province;
 import finalproject.finalproject.repositories.ProvinceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author RR17
  */
-@Repository
+@Service
 public class ProvinceService {
     @Autowired
     private ProvinceRepository provinceImplement;
