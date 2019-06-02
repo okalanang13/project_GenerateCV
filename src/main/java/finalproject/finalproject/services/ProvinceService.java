@@ -14,7 +14,6 @@ public class ProvinceService {
     @Autowired
     private ProvinceRepository provinceImplement;
     
-    
     public Iterable<Province> findAllProvince(){
         return provinceImplement.findAll();
     }
