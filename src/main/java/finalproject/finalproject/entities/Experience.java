@@ -10,9 +10,12 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -36,7 +39,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Experience.findByPosition", query = "SELECT e FROM Experience e WHERE e.position = :position")
     , @NamedQuery(name = "Experience.findByDescription", query = "SELECT e FROM Experience e WHERE e.description = :description")
     , @NamedQuery(name = "Experience.findByStartDate", query = "SELECT e FROM Experience e WHERE e.startDate = :startDate")
-    , @NamedQuery(name = "Experience.findByEndDate", query = "SELECT e FROM Experience e WHERE e.endDate = :endDate")})
+    , @NamedQuery(name = "Experience.findByEndDate", query = "SELECT e FROM Experience e WHERE e.endDate = :endDate")
+    , @NamedQuery(name = "Experience.findByIsDelete", query = "SELECT e FROM Experience e WHERE e.isDelete = :isDelete")})
 public class Experience implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,6 +72,11 @@ public class Experience implements Serializable {
     @Column(name = "end_date")
     @Temporal(TemporalType.DATE)
     private Date endDate;
+    @Column(name = "is_delete")
+    private Character isDelete;
+    @JoinColumn(name = "id_employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee idEmployee;
 
     public Experience() {
     }
@@ -130,6 +139,22 @@ public class Experience implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public Character getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Character isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public Employee getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(Employee idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     @Override

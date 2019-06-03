@@ -61,6 +61,8 @@ public class Village implements Serializable {
     @Column(name = "is_delete")
     private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
+    private List<College> collegeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
     private List<Employee> employeeList;
     @JoinColumn(name = "id_subdistrict", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -110,6 +112,15 @@ public class Village implements Serializable {
 
     public void setIsDelete(Character isDelete) {
         this.isDelete = isDelete;
+    }
+
+    @XmlTransient
+    public List<College> getCollegeList() {
+        return collegeList;
+    }
+
+    public void setCollegeList(List<College> collegeList) {
+        this.collegeList = collegeList;
     }
 
     @XmlTransient

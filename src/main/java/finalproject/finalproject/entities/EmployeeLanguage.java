@@ -44,6 +44,9 @@ public class EmployeeLanguage implements Serializable {
     @NotNull
     @Column(name = "is_delete")
     private Character isDelete;
+    @JoinColumn(name = "id_employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee idEmployee;
     @JoinColumn(name = "id_language", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Language idLanguage;
@@ -74,6 +77,14 @@ public class EmployeeLanguage implements Serializable {
 
     public void setIsDelete(Character isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Employee getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(Employee idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public Language getIdLanguage() {

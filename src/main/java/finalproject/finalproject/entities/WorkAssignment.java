@@ -59,6 +59,9 @@ public class WorkAssignment implements Serializable {
     @NotNull
     @Column(name = "is_delete")
     private Character isDelete;
+    @JoinColumn(name = "id_employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee idEmployee;
     @JoinColumn(name = "id_job", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Job idJob;
@@ -107,6 +110,14 @@ public class WorkAssignment implements Serializable {
 
     public void setIsDelete(Character isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Employee getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(Employee idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public Job getIdJob() {

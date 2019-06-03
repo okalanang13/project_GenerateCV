@@ -8,6 +8,7 @@ package finalproject.finalproject.controller;
 import finalproject.finalproject.repositories.EmployeeLanguageRepository;
 import finalproject.finalproject.services.EmployeeLanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author RR17
  */
+@Controller
 public class EmployeeLanguageController {
     //tidak perlu lagi menyediakan setter method maupun menambahkan argumen di constructor. 
     //Kita dapat menggunakan anotasi @Autowired
@@ -29,7 +31,7 @@ public class EmployeeLanguageController {
     //proses menampilkan semua data actor
     @GetMapping("/page/employeeLanguage")
     public String employeeLanguage(Model model) {
-        model.addAttribute("dataemployeeLanguage", employeeLanguageService.findAllEmpla());
+        model.addAttribute("dataEmpla", employeeLanguageService.findAllEmpla());
         return "employeeLanguage";
     }
 }

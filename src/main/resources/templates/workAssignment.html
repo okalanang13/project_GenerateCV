@@ -132,10 +132,10 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Data Major</h1>
+                        <h1 class="h2">Data Work Assignment</h1>
 
                         <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-workAss"><i class="fa fa-plus-circle"></i>
-                            Add Data Major</button>
+                            Add Data Work Assignment</button>
                     </div>
 
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -155,7 +155,7 @@
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="startDate" th:text="${data.startDate}"></td>
                                 <td id="endDate" th:text="${data.endDate}"></td>
-                                <td id="idEmployee" th:text="${data.idEmployee}"></td>
+                                <td id="idEmployee" th:text="${data.idEmployee.id}"></td>
                                 <td id="idJob" th:text="${data.idJob.id}"></td>
                                 <td id="isDelete" th:text="${data.isDelete}"></td>
                                 <td>

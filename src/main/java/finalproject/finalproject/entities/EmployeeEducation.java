@@ -67,6 +67,9 @@ public class EmployeeEducation implements Serializable {
     @JoinColumn(name = "id_education", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Education idEducation;
+    @JoinColumn(name = "id_employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee idEmployee;
 
     public EmployeeEducation() {
     }
@@ -129,6 +132,14 @@ public class EmployeeEducation implements Serializable {
 
     public void setIdEducation(Education idEducation) {
         this.idEducation = idEducation;
+    }
+
+    public Employee getIdEmployee() {
+        return idEmployee;
+    }
+
+    public void setIdEmployee(Employee idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     @Override

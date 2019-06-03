@@ -50,6 +50,8 @@ public class District implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "name")
     private String name;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "is_delete")
     private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDistrict", fetch = FetchType.LAZY)
@@ -65,9 +67,10 @@ public class District implements Serializable {
         this.id = id;
     }
 
-    public District(String id, String name) {
+    public District(String id, String name, Character isDelete) {
         this.id = id;
         this.name = name;
+        this.isDelete = isDelete;
     }
 
     public String getId() {

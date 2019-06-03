@@ -8,7 +8,6 @@
     <class>finalproject.finalproject.entities.Province</class>
     <class>finalproject.finalproject.entities.District</class>
     <class>finalproject.finalproject.entities.Subdistrict</class>
-    <class>finalproject.finalproject.entities.College</class>
     <class>finalproject.finalproject.entities.Education</class>
     <class>finalproject.finalproject.entities.EmployeeEducation</class>
     <class>finalproject.finalproject.entities.Degree</class>
@@ -18,6 +17,7 @@
     <class>finalproject.finalproject.entities.EmployeeLanguage</class>
     <class>finalproject.finalproject.entities.Experience</class>
     <class>finalproject.finalproject.entities.WorkAssignment</class>
+    <class>finalproject.finalproject.entities.College</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_generate?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

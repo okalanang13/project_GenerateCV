@@ -13,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -65,6 +67,9 @@ public class College implements Serializable {
     @NotNull
     @Column(name = "is_delete")
     private Character isDelete;
+    @JoinColumn(name = "id_village", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Village idVillage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCollege", fetch = FetchType.LAZY)
     private List<Education> educationList;
 
@@ -121,6 +126,14 @@ public class College implements Serializable {
 
     public void setIsDelete(Character isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Village getIdVillage() {
+        return idVillage;
+    }
+
+    public void setIdVillage(Village idVillage) {
+        this.idVillage = idVillage;
     }
 
     @XmlTransient

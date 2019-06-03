@@ -45,7 +45,7 @@ public class Major implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 30)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
