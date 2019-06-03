@@ -35,7 +35,7 @@ public class ProvinceController {
     }
     
     //proses tambah data dengan fungsi save dari Crud Repository
-    @PostMapping("/page/province/addDataProvince")
+    @PostMapping("/addDataProvince")
     public String addDataProvince (@Valid Province province){
         provinceRepository.save(province);
         return "province";
