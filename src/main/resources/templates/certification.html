@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico/}">
-        <title>Religion</title>
+        <title>Certification</title>
         <link rel="stylesheet" th:href="@{/dist/css/bootstrap.min.css}"  media="screen"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" th:href="@{/dist/font-awesome/css/font-awesome.min.css}">
@@ -89,7 +89,7 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Data Religion</h1>
+                        <h1 class="h2">Data Certification</h1>
                         <!-- <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                   <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -100,7 +100,7 @@
                   This week
                 </button>
               </div> -->
-                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-Religion"><i class="fa fa-plus-circle"></i>
+                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-certification"><i class="fa fa-plus-circle"></i>
                         Add Data</button>
                     </div>
 
@@ -108,18 +108,18 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nama</th>
+                                <th>Name</th>
                                 <th>Delete</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each = "data:${dataReligion}">
+                            <tr th:each = "data:${dataCertification}">
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="name" th:text="${data.name}"></td>
                                 <td id="isDelete" th:text="${data.isDelete}"></td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-Religion"><i class="fa fa-edit"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-certification"><i class="fa fa-edit"></i>
                                         Edit</button>
                                     <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>
                                         Delete</button>
@@ -133,25 +133,25 @@
         </div>
 
         <!-- Modal input Dialog -->
-        <div class="modal fade" id="input-Religion" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal fade" id="input-certification" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Religion</h4>
+                        <h4 class="modal-title">Add Certification</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
-                    <form th:action="@{/addreligion}" method="post">
+                    <form th:action="@{/addcertification}" method="post">
  
                         <div class="form-group required">
-                            <label for="id" class="col-form-label col-md-4">Religion ID</label>
+                            <label for="id" class="col-form-label col-md-4">Certification ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Religion ID">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Certification ID">
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="name" class="col-form-label col-md-4">Religion Name</label>
+                            <label for="name" class="col-form-label col-md-4">Certification Name</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Religion Name">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Certification Name">
                             </div>
                         </div>
                         <div class="form-group required">
@@ -215,12 +215,12 @@
         </div>-->
 
         <div class="update-form">
-            <form th:action="@{/updatereligion}" method="get">
-                <div class="modal fade" id="edit-Religion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form th:action="@{/updatecertification}" method="get">
+                <div class="modal fade" id="edit-certification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Update Religion</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Update Certification</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -228,12 +228,12 @@
                             <div class="modal-body">
 <!--                                <span id="actor_Id"></span>-->
                                 <div class="form-group required">
-                                    <label for="id" class="col-form-label">Religion ID</label>
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="Religion ID" readonly>
+                                    <label for="id" class="col-form-label">Certification ID</label>
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="Certification ID" readonly>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="name" class="col-form-label">Religion Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Religion Name">
+                                    <label for="name" class="col-form-label">Certification Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Certification Name">
                                 </div>
                                 <div class="form-group required">
                                     <label for="isDelete" class="col-form-label">Status Delete</label>
@@ -272,7 +272,7 @@
         </script>
         <script>
             $(document).ready(function (){
-                $("#edit-Religion").on('show.bs.modal', function (e) {
+                $("#edit-certification").on('show.bs.modal', function (e) {
                     var _button = $(e.relatedTarget);
                     var _row = _button.parents("tr");
                     
