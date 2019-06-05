@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="bootcamp.mii_bootcamp.mii_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>bootcamp.mii.bootcamp.mii.entities.FilmActor</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Film</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Actor</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Religion</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Organization</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.EmployeeTraining</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.EmployeeSkill</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Major</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Degree</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Education</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.District</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Language</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Category</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Employee</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Subdistrict</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Job</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.College</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Village</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.EmployeeEducation</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Achievement</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.EmployeeLanguage</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Certification</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Training</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Province</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.WorkAssignment</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Skill</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.EmployeeCertification</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Experience</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>
