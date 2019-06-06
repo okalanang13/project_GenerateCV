@@ -208,7 +208,7 @@
         </div>
 
         <div class="update-form">
-            <form th:action="@{/updateachievement}" method="post">
+            <form th:action="@{/updateachievement/id}" method="post">
                 <div class="modal fade" id="edit-achievement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -234,7 +234,7 @@
                                 </div>
                                 <div class="form-group required">
                                     <label for="dateAchiev" class="col-form-label">Date</label>
-                                    <input type="date" class="form-control" id="${#dateAchiev}" name="dateAchiev" placeholder="Date">
+                                    <input type="text" class="form-control" id="_datepiker" name="dateAchiev" placeholder="yyyy-mm-dd">
                                 </div>
                                 <div class="form-group required">
                                     <label for="id" class="col-form-label">Employee</label>
@@ -253,7 +253,7 @@
         </div>
         <div class="delete-form">
 
-            <form th:action="@{/deleteachievement}" method="get">
+            <form th:action="@{/deleteachievement/id}" method="get">
 
                 <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -276,11 +276,7 @@
                             <div class="modal-body">
 
                                 <input type="hidden" class="form-control" id="id" name="id" readonly>
-                                <input type="hidden" class="form-control" id="name" name="name">
-                                <input type="hidden" class="form-control" id="description" name="description">
-                                <input type="hidden" class="form-control" id="_datepiker" name="dateAchiev">
-                                <input type="hidden" class="form-control" id="idEmployee" name="idEmployee">
-
+                               
                                 Anda yakin ingin menghapus data ini?
 
                             </div>
@@ -331,12 +327,14 @@
                     var _id = _row.find("#id").text();
                     var _name = _row.find("#name").text();
                     var _description = _row.find("#description").text();
+                    var _dateAchiev = _row.find("#dateAchiev").text();
                     var _idEmployee = _row.find("#idEmployee").text();
                     var _nameEmployee = _row.find("#nameEmployee").text();
 
                     $(this).find("#id").val(_id);
                     $(this).find("#name").val(_name);
                     $(this).find("#description").val(_description);
+                    $(this).find("#dateAchiev").val(_dateAchiev);
                     $(this).find("#idEmployee").val(_idEmployee);
                     $(this).find("#nameEmployee").val(_nameEmployee);
                 })
@@ -351,12 +349,14 @@
                     var _id = _row.find("#id").text();
                     var _name = _row.find("#name").text();
                     var _description = _row.find("#description").text();
+                    var _dateAchiev = _row.find("#dateAchiev").text();
                     var _idEmployee = _row.find("#idEmployee").text();
                     var _nameEmployee = _row.find("#nameEmployee").text();
 
                     $(this).find("#id").val(_id);
                     $(this).find("#name").val(_name);
                     $(this).find("#description").val(_description);
+                    $(this).find("#dateAchiev").val(_dateAchiev);
                     $(this).find("#idEmployee").val(_idEmployee);
                     $(this).find("#nameEmployee").val(_nameEmployee);
                 })

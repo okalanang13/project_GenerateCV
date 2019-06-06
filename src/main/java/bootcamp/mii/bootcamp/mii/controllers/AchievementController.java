@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -57,20 +58,19 @@ public class AchievementController {
 
     }
 
-    @PostMapping("/updateachievement")
+    @PostMapping("/updateachievement/{id}")
 
-    public String updateachievement(@Valid Achievement a) {
+    public String updateachievement(@PathVariable("id") String id,Achievement a) {
         a.setIsDelete('0');
         achievementRepository.save(a);
         return "redirect:/achievement";
 
     }
     
-    @GetMapping("/deleteachievement")
+    @GetMapping("/deleteachievement/{id}")
 
-    public String deleteachievement(@Valid Achievement a) {
-        a.setIsDelete('1');
-        achievementRepository.save(a);
+    public String deleteachievement(@PathVariable("id") String id,Achievement a) {
+        achievementRepository.delete(a);
         return "redirect:/achievement";
 
     }
