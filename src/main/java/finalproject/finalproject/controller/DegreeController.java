@@ -34,13 +34,32 @@ public class DegreeController {
     //proses menampilkan semua data actor
     @GetMapping("/page/degree")
     public String degree(Model model) {
-        model.addAttribute("dataDegree", degreeService.findAllDegree());
+        model.addAttribute("dataDegree", degreeService.getAllDegree());
         return "degree";
     }
     
     @PostMapping("/page/degree/addDataDegree")
     public String addDataDegree (@Valid Degree degree){
+        degree.setIsDelete("false");
         degreeRepository.save(degree);
         return "redirect:/page/degree";
+    }
+    
+    //proses update data dengan fungsi save dari Crud Repository
+    @PostMapping("/page/degree/updateDataDegree")
+    public String updateDataDegree(@Valid Degree degree) {
+        degree.setIsDelete("false");
+        degreeRepository.save(degree);
+        return "redirect:/page/degree";
+
+    }
+
+    //proses softdelete data dengan fungsi save dari Crud Repository
+    @GetMapping("/page/degree/softDeleteDataDegree")
+    public String softDeleteDataDegree(@Valid Degree degree) {
+        degree.setIsDelete("true");
+        degreeRepository.save(degree);
+        return "redirect:/page/degree";
+
     }
 }

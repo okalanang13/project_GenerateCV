@@ -19,7 +19,7 @@ public class DegreeService {
     @Autowired
     private DegreeRepository degreeImplement;
     
-    public Iterable<Degree> findAllDegree(){
-        return degreeImplement.findAll();
+    public Iterable<Degree> getAllDegree(){
+        return degreeImplement.getAll();
     }
 }
