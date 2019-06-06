@@ -42,10 +42,19 @@ public class CertificationController {
 
     }
 
-    @GetMapping("/updatecertification")
+    @PostMapping("/updatecertification")
 
     public String updatecertification(@Valid Certification c) {
         c.setIsDelete('0');
+        certificationRepository.save(c);
+        return "redirect:/certification";
+
+    }
+    
+    @GetMapping("/deletecertification")
+
+    public String deletecertification(@Valid Certification c) {
+        c.setIsDelete('1');
         certificationRepository.save(c);
         return "redirect:/certification";
 

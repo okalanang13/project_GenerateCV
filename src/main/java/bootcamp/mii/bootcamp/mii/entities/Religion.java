@@ -50,7 +50,8 @@ public class Religion implements Serializable {
     private String name;
     @Column(name = "is_delete")
     private Character isDelete;
-    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRegion", fetch = FetchType.LAZY)
+    private List<Employee> employeeList;
 
     public Religion() {
     }
@@ -62,12 +63,6 @@ public class Religion implements Serializable {
     public Religion(String id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Religion(String id, String name, Character isDelete) {
-        this.id = id;
-        this.name = name;
-        this.isDelete = isDelete;
     }
 
     public String getId() {
@@ -93,6 +88,16 @@ public class Religion implements Serializable {
     public void setIsDelete(Character isDelete) {
         this.isDelete = isDelete;
     }
+
+    @XmlTransient
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

@@ -35,17 +35,26 @@ public class CategoryController {
 
     @PostMapping("/addcategory")
 
-    public String addreligion(@Valid Category category) {
+    public String addcategory(@Valid Category category) {
         category.setIsDelete('0');
         categoryRepository.save(category);
         return "redirect:/category";
 
     }
 
-    @GetMapping("/updatecategory")
+    @PostMapping("/updatecategory")
 
-    public String updatereligion(@Valid Category c ) {
+    public String updatecategory(@Valid Category c ) {
         c.setIsDelete('0');
+        categoryRepository.save(c);
+        return "redirect:/category";
+
+    }
+    
+    @GetMapping("/deletecategory")
+
+    public String deletecategory(@Valid Category c ) {
+        c.setIsDelete('1');
         categoryRepository.save(c);
         return "redirect:/category";
 

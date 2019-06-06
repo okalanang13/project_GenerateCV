@@ -82,15 +82,6 @@ public class Achievement implements Serializable {
         this.dateAchiev = dateAchiev;
     }
 
-    public Achievement(Integer id, String name, String description, Date dateAchiev, Character isDelete, Employee idEmployee) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.dateAchiev = dateAchiev;
-        this.isDelete = isDelete;
-        this.idEmployee = idEmployee;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -163,5 +154,5 @@ public class Achievement implements Serializable {
     public String toString() {
         return "bootcamp.mii.bootcamp.mii.entities.Achievement[ id=" + id + " ]";
     }
-
+    
 }

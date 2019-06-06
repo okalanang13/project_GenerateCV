@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.services;
 
 import bootcamp.mii.bootcamp.mii.entities.EmployeeSkill;
 import bootcamp.mii.bootcamp.mii.repositories.EmployeeSkillRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class EmployeeSkillService {
     @Autowired
     private EmployeeSkillRepository employeeRepository;
     
-    public Iterable<EmployeeSkill> findAllEmployeeSkill(){
-        return employeeRepository.findAll();
+    public List<EmployeeSkill> findAllEmployeeSkill(){
+        return  employeeRepository.findEmployeeSkill();
     }
 }

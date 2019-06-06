@@ -59,7 +59,7 @@ public class Employee implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
     @Basic(optional = false)
     @NotNull
@@ -82,7 +82,7 @@ public class Employee implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "address")
     private String address;
-    @Column(name = "isDelete")
+    @Column(name = "is_delete")
     private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
     private List<Achievement> achievementList;
@@ -130,31 +130,6 @@ public class Employee implements Serializable {
         this.phone = phone;
         this.address = address;
     }
-
-    public Employee(Integer id, String firstName, String lastName, Character gender, String email, String phone, String address, Character isDelete, List<Achievement> achievementList, List<Employee> employeeList, Employee idManager, Religion idRegion, Village idVillage, List<Experience> experienceList, List<EmployeeEducation> employeeEducationList, List<EmployeeTraining> employeeTrainingList, List<EmployeeLanguage> employeeLanguageList, List<WorkAssignment> workAssignmentList, List<EmployeeCertification> employeeCertificationList, List<Organization> organizationList, List<EmployeeSkill> employeeSkillList) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.isDelete = isDelete;
-        this.achievementList = achievementList;
-        this.employeeList = employeeList;
-        this.idManager = idManager;
-        this.idRegion = idRegion;
-        this.idVillage = idVillage;
-        this.experienceList = experienceList;
-        this.employeeEducationList = employeeEducationList;
-        this.employeeTrainingList = employeeTrainingList;
-        this.employeeLanguageList = employeeLanguageList;
-        this.workAssignmentList = workAssignmentList;
-        this.employeeCertificationList = employeeCertificationList;
-        this.organizationList = organizationList;
-        this.employeeSkillList = employeeSkillList;
-    }
-    
 
     public Integer getId() {
         return id;

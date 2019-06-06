@@ -50,7 +50,7 @@ public class EmployeeSkill implements Serializable {
     @Column(name = "is_delete")
     private Character isDelete;
     @JoinColumn(name = "id_employee", referencedColumnName = "id")
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Employee idEmployee;
     @JoinColumn(name = "id_skill", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -67,16 +67,6 @@ public class EmployeeSkill implements Serializable {
         this.id = id;
         this.rating = rating;
     }
-
-    public EmployeeSkill(Integer id, String rating, Character isDelete, Employee idEmployee, Skill idSkill) {
-        this.id = id;
-        this.rating = rating;
-        this.isDelete = isDelete;
-        this.idEmployee = idEmployee;
-        this.idSkill = idSkill;
-    }
-    
-    
 
     public Integer getId() {
         return id;

@@ -21,8 +21,8 @@ public class AchievementService {
     @Autowired
     private AchievementRepository achievementRepository;
     
-    public Iterable<Achievement> findAllAchievement(){
-        return achievementRepository.findAll();
+    public List<Achievement> findAllAchievement(){
+        return achievementRepository.findAllAchiev();
     }
     
     

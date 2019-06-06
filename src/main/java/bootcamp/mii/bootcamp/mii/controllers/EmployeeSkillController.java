@@ -42,10 +42,20 @@ public class EmployeeSkillController {
 
     }
 
-    @GetMapping("/updateemployeeskill")
+    @PostMapping("/updateemployeeskill")
 
     public String updateemployeeskill(@Valid EmployeeSkill e ) {
         e.setIsDelete('0');
+        employeeSkillRepository.save(e);
+        return "redirect:/employeeskill";
+
+    }
+    
+    @GetMapping("/deleteemployeeskill")
+
+    public String deleteemployeeskill(@Valid EmployeeSkill e, Model model ) {
+        model.addAttribute("dataES", employeeSkillService.findAllEmployeeSkill());
+        e.setIsDelete('1');
         employeeSkillRepository.save(e);
         return "redirect:/employeeskill";
 

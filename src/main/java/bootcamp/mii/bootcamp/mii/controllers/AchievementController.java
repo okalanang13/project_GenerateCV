@@ -8,11 +8,16 @@ package bootcamp.mii.bootcamp.mii.controllers;
 import bootcamp.mii.bootcamp.mii.entities.Achievement;
 import bootcamp.mii.bootcamp.mii.repositories.AchievementRepository;
 import bootcamp.mii.bootcamp.mii.services.AchievementService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -21,11 +26,21 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class AchievementController {
+
     @Autowired
     private AchievementService achievementService;
 
     @Autowired
     private AchievementRepository achievementRepository;
+
+    @InitBinder
+
+    public void initBinder(WebDataBinder binder) {
+
+        binder.registerCustomEditor(Date.class,
+                new CustomDateEditor(new SimpleDateFormat("yyyy-mm-dd"), true, 10));
+
+    }
 
     @GetMapping("/achievement")
     public String achievement(Model model) {
@@ -42,10 +57,19 @@ public class AchievementController {
 
     }
 
-    @GetMapping("/updateachievement")
+    @PostMapping("/updateachievement")
 
-    public String updatereligion(@Valid Achievement a ) {
+    public String updateachievement(@Valid Achievement a) {
         a.setIsDelete('0');
+        achievementRepository.save(a);
+        return "redirect:/achievement";
+
+    }
+    
+    @GetMapping("/deleteachievement")
+
+    public String deleteachievement(@Valid Achievement a) {
+        a.setIsDelete('1');
         achievementRepository.save(a);
         return "redirect:/achievement";
 

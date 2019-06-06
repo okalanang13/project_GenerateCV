@@ -24,7 +24,7 @@ public class ReligionService {
     private ReligionRepository religionImplement;
     
     
-    public Iterable<Religion> findAllReligion(){
-        return religionImplement.findAll();
+    public List<Religion> findAllReligion(){
+        return religionImplement.findReligion();
     }
 }

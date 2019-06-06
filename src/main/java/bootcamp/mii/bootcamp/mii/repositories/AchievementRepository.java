@@ -20,7 +20,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AchievementRepository extends CrudRepository<Achievement, Integer>{
-    @Query(value = "SELECT a.`id`, a.`name`, a.`description`, a.`date_achiev`, a.`id_employee`, a.`is_delete`, b.`first_name` FROM achievement as a join employee b on a.`id_employee` = b.`id` order by a.`id` ",
+    @Query(value = "SELECT a.`id`, a.`name`, a.`description`, a.`date_achiev`, a.`id_employee`,b.`first_name`, a.`is_delete` "
+            + " FROM achievement a "
+            + " join employee b "
+            + " on a.`id_employee` = b.`id`"
+            + " WHERE a.is_delete='0'",
             nativeQuery = true)
     List<Achievement> findAllAchiev();
 

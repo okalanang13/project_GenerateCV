@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class TrainingController {
+
     @Autowired
     private TrainingService trainingService;
 
@@ -42,10 +43,18 @@ public class TrainingController {
 
     }
 
-    @GetMapping("/updatetraining")
+    @PostMapping("/updatetraining")
 
-    public String updatetraining(@Valid Training t ) {
+    public String updatetraining(@Valid Training t) {
         t.setIsDelete('0');
+        trainingRepository.save(t);
+        return "redirect:/training";
+    }
+
+    @GetMapping("/deletetraining")
+
+    public String deletetraining(@Valid Training t) {
+        t.setIsDelete('1');
         trainingRepository.save(t);
         return "redirect:/training";
     }

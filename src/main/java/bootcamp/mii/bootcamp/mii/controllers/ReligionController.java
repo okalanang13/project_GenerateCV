@@ -49,10 +49,19 @@ public class ReligionController {
 
     }
 
-    @GetMapping("/updatereligion")
+    @PostMapping("/updatereligion")
 
     public String updatereligion(@Valid Religion religion) {
         religion.setIsDelete('0');
+        religionRepository.save(religion);
+        return "redirect:/religion";
+
+    }
+
+    @GetMapping("/deletereligion")
+
+    public String deletereligion(@Valid Religion religion) {
+        religion.setIsDelete('1');
         religionRepository.save(religion);
         return "redirect:/religion";
 

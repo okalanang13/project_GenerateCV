@@ -5,7 +5,6 @@
  */
 package bootcamp.mii.bootcamp.mii.controllers;
 
-
 import bootcamp.mii.bootcamp.mii.entities.Skill;
 import bootcamp.mii.bootcamp.mii.repositories.SkillRepository;
 import bootcamp.mii.bootcamp.mii.services.SkillService;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class SkillController {
+
     @Autowired
     private SkillService skillService;
 
@@ -43,10 +43,17 @@ public class SkillController {
 
     }
 
-    @GetMapping("/updateskill")
+    @PostMapping("/updateskill")
 
-    public String updatereligion(@Valid Skill skill) {
+    public String updateskill(@Valid Skill skill) {
         skill.setIsDelete('0');
+        skillRepository.save(skill);
+        return "redirect:/skill";
+
+    }
+    @GetMapping("/deleteskill")
+    public String deleteskill(@Valid Skill skill) {
+        skill.setIsDelete('1');
         skillRepository.save(skill);
         return "redirect:/skill";
 

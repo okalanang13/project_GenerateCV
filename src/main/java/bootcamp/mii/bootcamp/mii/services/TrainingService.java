@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.services;
 
 import bootcamp.mii.bootcamp.mii.entities.Training;
 import bootcamp.mii.bootcamp.mii.repositories.TrainingRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class TrainingService {
     @Autowired
     private TrainingRepository trainingRepository;
 
-    public Iterable<Training> findAllTraining() {
-        return trainingRepository.findAll();
+    public List<Training> findAllTraining() {
+        return trainingRepository.findTraining();
     }
 }
