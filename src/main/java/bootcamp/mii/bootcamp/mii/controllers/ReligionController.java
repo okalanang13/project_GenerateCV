@@ -29,7 +29,7 @@ public class ReligionController {
     @Autowired
     private ReligionRepository religionRepository;
 
-    @GetMapping({"/", "/dashboard"})
+    @GetMapping("/dashboard")
     public String dashboard() {
         return "dashboard";
     }
