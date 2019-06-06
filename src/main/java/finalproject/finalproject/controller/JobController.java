@@ -5,12 +5,16 @@
  */
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.Job;
+import finalproject.finalproject.entities.Job;
 import finalproject.finalproject.repositories.JobRepository;
 import finalproject.finalproject.services.JobService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,5 +37,11 @@ public class JobController {
     public String job(Model model) {
         model.addAttribute("dataJob", jobService.findAllJob());
         return "job";
+    }
+    
+    @PostMapping("/page/job/addDataJob")
+    public String addDataJob (@Valid Job job){
+        jobRepository.save(job);
+        return "redirect:/page/job";
     }
 }

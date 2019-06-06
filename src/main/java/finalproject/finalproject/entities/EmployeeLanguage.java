@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -42,8 +43,9 @@ public class EmployeeLanguage implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @JoinColumn(name = "id_employee", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Employee idEmployee;
@@ -58,7 +60,7 @@ public class EmployeeLanguage implements Serializable {
         this.id = id;
     }
 
-    public EmployeeLanguage(Integer id, Character isDelete) {
+    public EmployeeLanguage(Integer id, String isDelete) {
         this.id = id;
         this.isDelete = isDelete;
     }
@@ -71,11 +73,11 @@ public class EmployeeLanguage implements Serializable {
         this.id = id;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

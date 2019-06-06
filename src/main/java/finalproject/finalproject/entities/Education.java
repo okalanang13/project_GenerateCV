@@ -46,8 +46,9 @@ public class Education implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @JoinColumn(name = "id_college", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private College idCollege;
@@ -67,7 +68,7 @@ public class Education implements Serializable {
         this.id = id;
     }
 
-    public Education(String id, Character isDelete) {
+    public Education(String id, String isDelete) {
         this.id = id;
         this.isDelete = isDelete;
     }
@@ -80,11 +81,11 @@ public class Education implements Serializable {
         this.id = id;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

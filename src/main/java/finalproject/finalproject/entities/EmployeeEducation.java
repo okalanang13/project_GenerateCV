@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -62,8 +63,9 @@ public class EmployeeEducation implements Serializable {
     private Date endDate;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @JoinColumn(name = "id_education", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Education idEducation;
@@ -78,7 +80,7 @@ public class EmployeeEducation implements Serializable {
         this.id = id;
     }
 
-    public EmployeeEducation(Integer id, float gpa, Date startDate, Date endDate, Character isDelete) {
+    public EmployeeEducation(Integer id, float gpa, Date startDate, Date endDate, String isDelete) {
         this.id = id;
         this.gpa = gpa;
         this.startDate = startDate;
@@ -118,11 +120,11 @@ public class EmployeeEducation implements Serializable {
         this.endDate = endDate;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

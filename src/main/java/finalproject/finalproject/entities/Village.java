@@ -58,8 +58,9 @@ public class Village implements Serializable {
     private String postalCode;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
     private List<College> collegeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVillage", fetch = FetchType.LAZY)
@@ -75,7 +76,7 @@ public class Village implements Serializable {
         this.id = id;
     }
 
-    public Village(String id, String name, String postalCode, Character isDelete) {
+    public Village(String id, String name, String postalCode, String isDelete) {
         this.id = id;
         this.name = name;
         this.postalCode = postalCode;
@@ -106,11 +107,11 @@ public class Village implements Serializable {
         this.postalCode = postalCode;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

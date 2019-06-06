@@ -5,12 +5,15 @@
  */
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.Major;
 import finalproject.finalproject.repositories.MajorRepository;
 import finalproject.finalproject.services.MajorService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,5 +36,11 @@ public class MajorController {
     public String major(Model model) {
         model.addAttribute("dataMajor", majorService.findAllMajor());
         return "major";
+    }
+    
+    @PostMapping("/page/major/addDataMajor")
+    public String addDataMajor (@Valid Major major){
+        majorRepository.save(major);
+        return "redirect:/page/major";
     }
 }

@@ -5,12 +5,15 @@
  */
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.EmployeeLanguage;
 import finalproject.finalproject.repositories.EmployeeLanguageRepository;
 import finalproject.finalproject.services.EmployeeLanguageService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,5 +36,11 @@ public class EmployeeLanguageController {
     public String employeeLanguage(Model model) {
         model.addAttribute("dataEmpla", employeeLanguageService.findAllEmpla());
         return "employeeLanguage";
+    }
+    
+    @PostMapping("/page/employeeLanguage/addDataEmpla")
+    public String addDataEmpla (@Valid EmployeeLanguage employeeLanguage){
+        employeeLanguageRepository.save(employeeLanguage);
+        return "redirect:/page/employeeLanguage";
     }
 }

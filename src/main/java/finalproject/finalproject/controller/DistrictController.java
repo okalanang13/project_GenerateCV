@@ -1,11 +1,14 @@
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.District;
 import finalproject.finalproject.repositories.DistrictRepository;
 import finalproject.finalproject.services.DistrictService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -23,5 +26,11 @@ public class DistrictController {
     public String district(Model model) {
         model.addAttribute("dataDistrict", districtService.findAllDistrict());
         return "district";
+    }
+    
+    @PostMapping("/page/district/addDataDistrict")
+    public String addDataDistrict (@Valid District district){
+        districtRepository.save(district);
+        return "redirect:/page/district";
     }
 }

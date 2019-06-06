@@ -84,8 +84,9 @@ public class Employee implements Serializable {
     private String address;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
     private List<EmployeeLanguage> employeeLanguageList;
     @OneToMany(mappedBy = "idManager", fetch = FetchType.LAZY)
@@ -113,7 +114,7 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public Employee(Integer id, String firstName, String lastName, Character gender, String email, String phone, String address, Character isDelete) {
+    public Employee(Integer id, String firstName, String lastName, Character gender, String email, String phone, String address, String isDelete) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -180,11 +181,11 @@ public class Employee implements Serializable {
         this.address = address;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

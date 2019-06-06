@@ -50,8 +50,9 @@ public class Religion implements Serializable {
     private String name;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idReligion", fetch = FetchType.LAZY)
     private List<Employee> employeeList;
 
@@ -62,7 +63,7 @@ public class Religion implements Serializable {
         this.id = id;
     }
 
-    public Religion(String id, String name, Character isDelete) {
+    public Religion(String id, String name, String isDelete) {
         this.id = id;
         this.name = name;
         this.isDelete = isDelete;
@@ -84,11 +85,11 @@ public class Religion implements Serializable {
         this.name = name;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

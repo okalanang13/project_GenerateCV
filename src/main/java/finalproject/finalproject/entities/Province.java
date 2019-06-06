@@ -45,13 +45,14 @@ public class Province implements Serializable {
     private String id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 20)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProvince", fetch = FetchType.LAZY)
     private List<District> districtList;
 
@@ -62,7 +63,7 @@ public class Province implements Serializable {
         this.id = id;
     }
 
-    public Province(String id, String name, Character isDelete) {
+    public Province(String id, String name, String isDelete) {
         this.id = id;
         this.name = name;
         this.isDelete = isDelete;
@@ -84,11 +85,11 @@ public class Province implements Serializable {
         this.name = name;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

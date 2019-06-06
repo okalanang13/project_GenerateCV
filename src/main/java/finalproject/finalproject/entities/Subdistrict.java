@@ -52,8 +52,9 @@ public class Subdistrict implements Serializable {
     private String name;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "is_delete")
-    private Character isDelete;
+    private String isDelete;
     @JoinColumn(name = "id_district", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private District idDistrict;
@@ -67,7 +68,7 @@ public class Subdistrict implements Serializable {
         this.id = id;
     }
 
-    public Subdistrict(String id, String name, Character isDelete) {
+    public Subdistrict(String id, String name, String isDelete) {
         this.id = id;
         this.name = name;
         this.isDelete = isDelete;
@@ -89,11 +90,11 @@ public class Subdistrict implements Serializable {
         this.name = name;
     }
 
-    public Character getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Character isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 

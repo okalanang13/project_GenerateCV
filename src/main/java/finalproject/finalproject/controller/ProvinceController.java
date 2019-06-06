@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -16,15 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class ProvinceController {
-    
+
     //tidak perlu lagi menyediakan setter method maupun menambahkan argumen di constructor. 
     //Kita dapat menggunakan anotasi @Autowired
     @Autowired
     private ProvinceRepository provinceRepository;
-    
+
     @Autowired
     private ProvinceService provinceService;
-    
+
     //@GetMapping adalah anotasi tersusun yang berfungsi sebagai pintasan untuk 
     //@RequestMapping(method = RequestMethod.GET).
     //proses menampilkan semua data actor
@@ -33,12 +36,31 @@ public class ProvinceController {
         model.addAttribute("dataProvince", provinceService.findAllProvince());
         return "province";
     }
-    
+
     //proses tambah data dengan fungsi save dari Crud Repository
-    @PostMapping("/addDataProvince")
-    public String addDataProvince (@Valid Province province){
+    @PostMapping("/page/province/addDataProvince")
+    public String addDataProvince(@Valid Province province) {
+        province.setIsDelete("false");
         provinceRepository.save(province);
-        return "province";
+        return "redirect:/page/province";
     }
-    
+
+    //proses update data dengan fungsi save dari Crud Repository
+    @PostMapping("/page/province/updateDataProvince")
+    public String updateDataProvince(@Valid Province province) {
+        province.setIsDelete("false");
+        provinceRepository.save(province);
+        return "redirect:/page/province";
+
+    }
+
+    //proses softdelete data dengan fungsi save dari Crud Repository
+    @GetMapping("/page/province/softDeleteDataProvince")
+    public String softDeleteDataProvince(@Valid Province province) {
+        province.setIsDelete("true");
+        provinceRepository.save(province);
+        return "redirect:/page/province";
+
+    }
+
 }

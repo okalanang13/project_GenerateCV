@@ -5,12 +5,15 @@
  */
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.Degree;
 import finalproject.finalproject.repositories.DegreeRepository;
 import finalproject.finalproject.services.DegreeService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,5 +36,11 @@ public class DegreeController {
     public String degree(Model model) {
         model.addAttribute("dataDegree", degreeService.findAllDegree());
         return "degree";
+    }
+    
+    @PostMapping("/page/degree/addDataDegree")
+    public String addDataDegree (@Valid Degree degree){
+        degreeRepository.save(degree);
+        return "redirect:/page/degree";
     }
 }

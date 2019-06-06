@@ -5,12 +5,15 @@
  */
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.Language;
 import finalproject.finalproject.repositories.LanguageRepository;
 import finalproject.finalproject.services.LanguageService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,5 +36,11 @@ public class LanguageController {
     public String language(Model model) {
         model.addAttribute("dataLanguage", languageService.findAllLanguage());
         return "language";
+    }
+    
+    @PostMapping("/page/language/addDataLanguage")
+    public String addDataLanguage (@Valid Language language){
+        languageRepository.save(language);
+        return "redirect:/page/language";
     }
 }

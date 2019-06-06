@@ -5,12 +5,15 @@
  */
 package finalproject.finalproject.controller;
 
+import finalproject.finalproject.entities.Education;
 import finalproject.finalproject.repositories.EducationRepository;
 import finalproject.finalproject.services.EducationService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -33,5 +36,11 @@ public class EducationController {
     public String education(Model model) {
         model.addAttribute("dataEducation", educationService.findAllEducation());
         return "education";
+    }
+    
+    @PostMapping("/page/education/addDataEducation")
+    public String addDataEducation (@Valid Education education){
+        educationRepository.save(education);
+        return "redirect:/page/education";
     }
 }
