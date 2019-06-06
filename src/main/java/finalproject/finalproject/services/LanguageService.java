@@ -19,7 +19,7 @@ public class LanguageService {
     @Autowired
     private LanguageRepository languageImplement;
     
-    public Iterable<Language> findAllLanguage(){
-        return languageImplement.findAll();
+    public Iterable<Language> getAllLanguage(){
+        return languageImplement.getAll();
     }
 }

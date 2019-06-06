@@ -34,13 +34,32 @@ public class LanguageController {
     //proses menampilkan semua data actor
     @GetMapping("/page/language")
     public String language(Model model) {
-        model.addAttribute("dataLanguage", languageService.findAllLanguage());
+        model.addAttribute("dataLanguage", languageService.getAllLanguage());
         return "language";
     }
     
     @PostMapping("/page/language/addDataLanguage")
     public String addDataLanguage (@Valid Language language){
+        language.setIsDelete("false");
         languageRepository.save(language);
         return "redirect:/page/language";
+    }
+    
+    //proses update data dengan fungsi save dari Crud Repository
+    @PostMapping("/page/language/updateDataLanguage")
+    public String updateDataJob(@Valid Language language) {
+        language.setIsDelete("false");
+        languageRepository.save(language);
+        return "redirect:/page/language";
+
+    }
+
+    //proses softdelete data dengan fungsi save dari Crud Repository
+    @GetMapping("/page/language/softDeleteDataLanguage")
+    public String softDeleteDataLanguage(@Valid Language language) {
+        language.setIsDelete("true");
+        languageRepository.save(language);
+        return "redirect:/page/language";
+
     }
 }
