@@ -33,7 +33,7 @@ public class ProvinceController {
     //proses menampilkan semua data actor
     @GetMapping("/page/province")
     public String province(Model model) {
-        model.addAttribute("dataProvince", provinceService.findAllProvince());
+        model.addAttribute("dataProvince", provinceService.getAllProvince());
         return "province";
     }
 

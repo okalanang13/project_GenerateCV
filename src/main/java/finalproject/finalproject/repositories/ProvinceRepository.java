@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 public interface ProvinceRepository extends CrudRepository<Province, String> {
 
     @Query(value = "select * from province where is_delete = 'false'", nativeQuery = true)
-    List<Province> findAll();
+    List<Province> getAll();
 }
