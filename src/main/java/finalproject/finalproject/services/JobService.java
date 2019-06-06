@@ -14,7 +14,7 @@ public class JobService {
     @Autowired
     private JobRepository jobImplement;
     
-    public Iterable<Job> findAllJob(){
-        return jobImplement.findAll();
+    public Iterable<Job> getAllJob(){
+        return jobImplement.getAll();
     }
 }

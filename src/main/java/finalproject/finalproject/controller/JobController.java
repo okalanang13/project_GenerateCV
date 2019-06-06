@@ -35,13 +35,32 @@ public class JobController {
     //proses menampilkan semua data actor
     @GetMapping("/page/job")
     public String job(Model model) {
-        model.addAttribute("dataJob", jobService.findAllJob());
+        model.addAttribute("dataJob", jobService.getAllJob());
         return "job";
     }
     
     @PostMapping("/page/job/addDataJob")
     public String addDataJob (@Valid Job job){
+        job.setIsDelete("false");
         jobRepository.save(job);
         return "redirect:/page/job";
+    }
+    
+    //proses update data dengan fungsi save dari Crud Repository
+    @PostMapping("/page/job/updateDataJob")
+    public String updateDataJob(@Valid Job job) {
+        job.setIsDelete("false");
+        jobRepository.save(job);
+        return "redirect:/page/job";
+
+    }
+
+    //proses softdelete data dengan fungsi save dari Crud Repository
+    @GetMapping("/page/job/softDeleteDataJob")
+    public String softDeleteDataJob(@Valid Job job) {
+        job.setIsDelete("true");
+        jobRepository.save(job);
+        return "redirect:/page/job";
+
     }
 }

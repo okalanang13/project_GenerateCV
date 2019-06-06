@@ -142,7 +142,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Job Title</th>
-                                <th>IsDelete</th>
+                                <!--<th>IsDelete</th>-->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -150,11 +150,11 @@
                             <tr th:each = "data:${dataJob}">
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="name" th:text="${data.name}"></td>
-                                <td id="isDelete" th:text="${data.isDelete}"></td>
+                                <!--<td id="isDelete" th:text="${data.isDelete}"></td>-->
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-job"><i class="fa fa-edit"></i>
                                         Edit</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
                                         Delete</button>
                                 </td>
                             </tr>
@@ -170,15 +170,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Province</h4>
+                        <h4 class="modal-title">Add Degree</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
-                    <form th:action="@{/addDataJob}" method="post">
+                    <form th:action="@{/page/job/addDataJob}" method="post">
 
                         <div class="form-group required">
-                            <label for="id" class="col-form-label col-md-4">Province ID</label>
+                            <label for="id" class="col-form-label col-md-4">Job Identifier</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Job ID">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Job Identity">
                             </div>
                         </div>
                         <div class="form-group required">
@@ -186,7 +186,7 @@
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Job Name">
                             </div>
-                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="1" placeholder="isDelete">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -197,85 +197,65 @@
             </div>
         </div>
 
-        <!-- Modal update Dialog -->
-        <!--        <div class="modal fade" id="edit-actor" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+        <div class="update-form">
+            <form th:action="@{/page/job/updateDataJob}" method="post">
+                <div class="modal fade" id="edit-job" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Add Region</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <form th:action="@{/update/{id}(id=${actor.actorId})}" method="post">
-         
+                            <div class="modal-body">
+                                <!--                                <span id="actor_Id"></span>-->
                                 <div class="form-group required">
-                                    <label for="actorId" class="col-form-label col-md-4">Actor ID</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{actorId}" class="form-control" id="actorId" name="actorId" placeholder="Actor Identity">
-                                    </div>
+                                    <label for="id" class="col-form-label">Job Identifier</label>
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="Job Identifier" readonly>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="firstName" class="col-form-label col-md-4">First Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" name="firstName" placeholder="First Name">
-                                    </div>
+                                    <label for="name_pro" class="col-form-label">Job Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Job Name">
                                 </div>
-                                <div class="form-group required">
-                                    <label for="lastName" class="col-form-label col-md-4">Last Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="lastName" class="col-form-label col-md-4">Last Update</label>
-                                    <div class="col-md-8">
-                                        <input type="date" th:field="*{lastUpdate}" class="form-control" id="lastUpdate" name="lastUpdate" placeholder="Last Update">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-success" id="confirm">Save</button>
-        
-                                </div>
-                            </form>
+                                <input type="hidden" class="form-control" id="isDel" name="isDelete" value="false" placeholder="isDelete">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save" />
+                            </div>
                         </div>
                     </div>
-                </div>-->
+                </div>
+            </form>
+        </div>
 
-        <!--        <div class="update-form">
-                    <form th:action="@{/update}" method="get">
-                        <div class="modal fade" id="edit-actor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <span id="actor_Id"></span>
-                                        <div class="form-group required">
-                                            <label for="actorId" class="col-form-label">Actor ID</label>
-                                            <input type="text" class="form-control" id="actor_Id" name="actorId" placeholder="Actor Identity" readonly>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="firstName" class="col-form-label">First Name</label>
-                                            <input type="text" class="form-control" id="first_Name" name="firstName" placeholder="First Name">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="lastName" class="col-form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="last_Name" name="lastName" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-primary" value="Save" />
-                                    </div>
-                                </div>
+        <div class="delete-form">
+            <form th:action="@{/page/job/softDeleteDataJob}" method="get">
+                <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Religion</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control" id="id" name="id" readonly>
+                                <input type="hidden" class="form-control" id="name" name="name">
+                                <input type="hidden" class="form-control" id="isDel" name="isDelete" value="true" placeholder="isDelete">
+                                Anda yakin ingin menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Delete" />
                             </div>
                         </div>
-                    </form>
-                </div>-->
+                    </div>
+                </div>
+            </form>
+        </div>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -295,8 +275,37 @@
         </script>
         <script>
             $(document).ready(function () {
-                $('#example').DataTable();
+            $('#example').DataTable();
             });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+            $("#edit-job").on('show.bs.modal', function (e) {
+            var _button = $(e.relatedTarget);
+            var _row = _button.parents("tr");
+            var _id = _row.find("#id").text();
+            var _name = _row.find("#name").text();
+            $(this).find("#id").val(_id);
+            $(this).find("#name").val(_name);
+            })
+            })
+        </script>
+
+        <!--var _id_Province untuk inisialisasi dari #id dan diusahakan beda nama dengan fungsi update diatas
+            #id didapat dari penamaan id row saat getAll
+            $(this).find("#idpro") didapat dari row pada fungsi delete-->
+        <script>
+            $(document).ready(function () {
+            $("#softdelete").on('show.bs.modal', function (e) {
+            var _button = $(e.relatedTarget);
+            var _row = _button.parents("tr");
+            var _id = _row.find("#id").text();
+            var _name = _row.find("#name").text();
+            $(this).find("#id").val(_id);
+            $(this).find("#name").val(_name);
+            })
+            })
         </script>
 
     </body>
