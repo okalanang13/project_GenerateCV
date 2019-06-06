@@ -34,13 +34,32 @@ public class MajorController {
     //proses menampilkan semua data actor
     @GetMapping("/page/major")
     public String major(Model model) {
-        model.addAttribute("dataMajor", majorService.findAllMajor());
+        model.addAttribute("dataMajor", majorService.getAllMajor());
         return "major";
     }
     
     @PostMapping("/page/major/addDataMajor")
     public String addDataMajor (@Valid Major major){
+        major.setIsDelete("false");
         majorRepository.save(major);
         return "redirect:/page/major";
+    }
+    
+    //proses update data dengan fungsi save dari Crud Repository
+    @PostMapping("/page/major/updateDataMajor")
+    public String updateDataMajor(@Valid Major major) {
+        major.setIsDelete("false");
+        majorRepository.save(major);
+        return "redirect:/page/major";
+
+    }
+
+    //proses softdelete data dengan fungsi save dari Crud Repository
+    @GetMapping("/page/major/softDeleteDataMajor")
+    public String softDeleteDataMajor(@Valid Major major) {
+        major.setIsDelete("true");
+        majorRepository.save(major);
+        return "redirect:/page/major";
+
     }
 }

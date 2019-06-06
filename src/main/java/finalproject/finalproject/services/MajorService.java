@@ -19,7 +19,7 @@ public class MajorService {
     @Autowired
     private MajorRepository majorImplement;
     
-    public Iterable<Major> findAllMajor(){
-        return majorImplement.findAll();
+    public Iterable<Major> getAllMajor(){
+        return majorImplement.getAll();
     }
 }
