@@ -6,6 +6,8 @@
 package bootcamp.mii.bootcamp.mii.repositories;
 
 import bootcamp.mii.bootcamp.mii.entities.Authority;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AuthorityRepository extends CrudRepository<Authority, String>{
-        
+        @Query(value = "SELECT r.id, r.name, r.is_delete FROM authority r"
+           + " WHERE r.is_delete = '0'"
+           ,nativeQuery = true)
+    List<Authority> findAuthority();
 }
