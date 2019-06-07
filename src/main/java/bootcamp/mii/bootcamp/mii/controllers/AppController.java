@@ -11,10 +11,6 @@ public class AppController {
 		return "index";
 	}
 	
-	@GetMapping("/menu")
-	public String menu() {
-		return "menu";
-	}
 	
 	@GetMapping("/user")
 	public String user() {

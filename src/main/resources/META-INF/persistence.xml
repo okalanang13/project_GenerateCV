@@ -30,6 +30,10 @@
     <class>bootcamp.mii.bootcamp.mii.entities.Skill</class>
     <class>bootcamp.mii.bootcamp.mii.entities.EmployeeCertification</class>
     <class>bootcamp.mii.bootcamp.mii.entities.Experience</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Role</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Authority</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.Users</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.UserAuthority</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

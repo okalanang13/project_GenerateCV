@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico/}">
-        <title>Employee Training</title>
+        <title>Training</title>
         <link rel="stylesheet" th:href="@{/dist/css/bootstrap.min.css}"  media="screen"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" th:href="@{/dist/font-awesome/css/font-awesome.min.css}">
@@ -101,7 +101,6 @@
                                     Data Organization
                                 </a>
                             </li>
-                            
                         </ul>
                     </div>
                 </nav>
@@ -109,7 +108,7 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Data Employee Training</h1>
+                        <h1 class="h2">Data Training</h1>
                         <!-- <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                   <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -120,7 +119,7 @@
                   This week
                 </button>
               </div> -->
-                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-achievement"><i class="fa fa-plus-circle"></i>
+                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-training"><i class="fa fa-plus-circle"></i>
                         Add Data</button>
                     </div>
 
@@ -129,29 +128,17 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Description</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Employee</th>
-                                <th>Training</th>
-                                <th>Delete</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each = "data:${dataET}">
+                            <tr th:each = "data:${dataRole}">
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="name" th:text="${data.name}"></td>
-                                <td id="description" th:text="${data.description}"></td>
-                                <td id="startDate" th:text="${data.startDate}"></td>
-                                <td id="endDate" th:text="${data.endDate}"></td>
-                                <td id="idEmployee" th:text="${data.idEmployee.id}"></td>
-                                <td id="idTraining" th:text="${data.idTraining.id}"></td>
-                                <td id="isDelete" th:text="${data.isDelete}"></td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-achievement"><i class="fa fa-edit"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-training"><i class="fa fa-edit"></i>
                                         Edit</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
                                         Delete</button>
                                 </td>
                             </tr>
@@ -163,94 +150,25 @@
         </div>
 
         <!-- Modal input Dialog -->
-        <div class="modal fade" id="input-achievement" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal fade" id="input-training" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Achievement</h4>
+                        <h4 class="modal-title">Add Training</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
-                    <form th:action="@{/addachievement}" method="post">
+                    <form th:action="@{/addrole}" method="post">
  
                         <div class="form-group required">
-                            <label for="id" class="col-form-label col-md-4">Achievement ID</label>
+                            <label for="id" class="col-form-label col-md-4">Training ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Achievement ID">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Training ID">
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="name" class="col-form-label col-md-4">Achievement Name</label>
+                            <label for="name" class="col-form-label col-md-4">Training Name</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Achievement Name">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="description" class="col-form-label col-md-4">Description</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Description">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="dateAchiev" class="col-form-label col-md-4">Date</label>
-                            <div class="col-md-8">
-                                <input type="date" class="form-control" id="dateAchiev" name="dateAchiev" placeholder="Date">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="id" class="col-form-label col-md-4">Employee</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="idEmployee" name="idEmployee" placeholder="Employee">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="isDelete" class="col-form-label col-md-4">Status Delete</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="isDelete" name="isDelete" placeholder="0" readonly="">
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-success" id="confirm">Save</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        
-         <!-- Modal update Dialog -->
-<!--        <div class="modal fade" id="edit-actor" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Region</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <form th:action="@{/update/{id}(id=${actor.actorId})}" method="post">
- 
-                        <div class="form-group required">
-                            <label for="actorId" class="col-form-label col-md-4">Actor ID</label>
-                            <div class="col-md-8">
-                                <input type="text" th:field="*{actorId}" class="form-control" id="actorId" name="actorId" placeholder="Actor Identity">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="firstName" class="col-form-label col-md-4">First Name</label>
-                            <div class="col-md-8">
-                                <input type="text" th:field="*{firstName}" class="form-control" id="firstName" name="firstName" placeholder="First Name">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="lastName" class="col-form-label col-md-4">Last Name</label>
-                            <div class="col-md-8">
-                                <input type="text" th:field="*{lastName}" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label for="lastName" class="col-form-label col-md-4">Last Update</label>
-                            <div class="col-md-8">
-                                <input type="date" th:field="*{lastUpdate}" class="form-control" id="lastUpdate" name="lastUpdate" placeholder="Last Update">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Training Name">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -261,15 +179,15 @@
                     </form>
                 </div>
             </div>
-        </div>-->
+        </div>
 
         <div class="update-form">
-            <form th:action="@{/updatecategory}" method="get">
-                <div class="modal fade" id="edit-category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form th:action="@{/updatetraining}" method="post">
+                <div class="modal fade" id="edit-training" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Update Training</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -277,16 +195,12 @@
                             <div class="modal-body">
 <!--                                <span id="actor_Id"></span>-->
                                 <div class="form-group required">
-                                    <label for="id" class="col-form-label">Category ID</label>
+                                    <label for="id" class="col-form-label">Training ID</label>
                                     <input type="text" class="form-control" id="id" name="id" placeholder="Religion ID" readonly>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="name" class="col-form-label">Category Name</label>
+                                    <label for="name" class="col-form-label">Training Name</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Religion Name">
-                                </div>
-                                <div class="form-group required">
-                                    <label for="isDelete" class="col-form-label">Status Delete</label>
-                                    <input type="text" class="form-control" id="isDelete" name="isDelete" placeholder="0"readonly="">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -297,6 +211,55 @@
                     </div>
                 </div>
             </form>
+        </div>
+        
+        <div class="delete-form">
+
+            <form th:action="@{/deletetraining}" method="get">
+
+                <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <div class="modal-dialog" role="document">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Training</h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                    <span aria-hidden="true">&times;</span>
+
+                                </button>
+
+                            </div>
+
+                            <div class="modal-body">
+
+                                <input type="hidden" class="form-control" id="id" name="id" readonly>
+                                <input type="hidden" class="form-control" id="name" name="name">
+
+                                Anda yakin ingin menghapus data ini?
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <input type="submit" class="btn btn-primary" value="Delete" />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
         </div>
 
         <!-- Bootstrap core JavaScript
@@ -321,21 +284,29 @@
         </script>
         <script>
             $(document).ready(function (){
-                $("#edit-category").on('show.bs.modal', function (e) {
+                $("#edit-training").on('show.bs.modal', function (e) {
                     var _button = $(e.relatedTarget);
                     var _row = _button.parents("tr");
                     
                     var _id = _row.find("#id").text();
                     var _name = _row.find("#name").text();
-                    var _isDelete = _row.find("#isDelete").text();
                     
                     $(this).find("#id").val(_id);
-                    $(this).find("#name").val(_name);
-                    $(this).find("#isDelete").val(_isDelete);
+                    $(this).find("#name").val(_name); 
+                })
+            })
+        </script>
+                <script>
+            $(document).ready(function (){
+                $("#softdelete").on('show.bs.modal', function (e) {
+                    var _button = $(e.relatedTarget);
+                    var _row = _button.parents("tr");
                     
-
-
+                    var _id = _row.find("#id").text();
+                    var _name = _row.find("#name").text();
                     
+                    $(this).find("#id").val(_id);
+                    $(this).find("#name").val(_name); 
                 })
             })
         </script>
