@@ -22,24 +22,25 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class UsersController {
+
     @Autowired
     private UsersService usersService;
 
     @Autowired
     private UsersRepository usersRepository;
 
-
     @GetMapping("/users")
     public String users(Model model) {
         model.addAttribute("dataUsers", usersService.findAllUsers());
         return "users";
     }
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping("/addusers")
 
     public String addusers(@Valid Users users) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-	users.setPassword(bCryptPasswordEncoder.encode("password"));
+
+        users.setPassword(bCryptPasswordEncoder.encode("password"));
         users.setIsDelete('0');
         usersRepository.save(users);
         return "redirect:/users";
@@ -48,7 +49,8 @@ public class UsersController {
 
     @PostMapping("/updateusers")
 
-    public String updateusers(@Valid Users users) {
+    public String updateusers(@Valid Users users, String password) {
+        users.setPassword(bCryptPasswordEncoder.encode(password));
         users.setIsDelete('0');
         usersRepository.save(users);
         return "redirect:/users";

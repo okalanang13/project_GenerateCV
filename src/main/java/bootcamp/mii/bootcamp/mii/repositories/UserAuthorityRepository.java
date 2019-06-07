@@ -5,7 +5,7 @@
  */
 package bootcamp.mii.bootcamp.mii.repositories;
 
-import bootcamp.mii.bootcamp.mii.entities.UserAuthority;
+import bootcamp.mii.bootcamp.mii.entities.UsersAuthority;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author ASUS
  */
 @Repository
-public interface UserAuthorityRepository extends CrudRepository<UserAuthority, String>{
+public interface UserAuthorityRepository extends CrudRepository<UsersAuthority, String>{
     
 }

@@ -21,8 +21,8 @@ public class AppController {
         return "dashboardadmin";
     }
 
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
+    @GetMapping("/dashboarduser")
+    public String dashboarduser() {
+        return "dashboarduser";
     }
 }

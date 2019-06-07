@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(resources).permitAll()
                 .antMatchers("/", "/index").permitAll()
                 .antMatchers("/dashboardadmin*").access("hasRole('ADMIN')")
-                .antMatchers("/user*").access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/dashboarduser*").access("hasRole('USER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -43,23 +43,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout");
     }
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    //Crea el encriptador de contraseñas	
+	
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+        bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
-    //Registra el service para usuarios y el encriptador de contrasena
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        // Setting Service to find User in the database.
-        // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 }

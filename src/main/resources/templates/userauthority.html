@@ -137,24 +137,25 @@
                   This week
                 </button>
               </div> -->
-                    <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-training"><i class="fa fa-plus-circle"></i>
-                        Add Data</button>
+                        <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#input-training"><i class="fa fa-plus-circle"></i>
+                            Add Data</button>
                     </div>
 
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Password</th>
+                                <th>ID Authority</th>
+                                <th>ID User</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each = "data:${dataUserauthority}">
                                 <td id="id" th:text="${data.id}"></td>
-                                <td id="userId" th:text="${data.userId.id}"></td>
-                                <td id="authorityId" th:text="${data.authorityId.id}"></td>
+                                <td id="idAuthority" th:text="${data.idAuthority.id}"></td>
+                                <td id="idUser" th:text="${data.idUser.id}"></td>
+
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-training"><i class="fa fa-edit"></i>
                                         Edit</button>
@@ -178,7 +179,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <form th:action="@{/adduserauthority}" method="post">
- 
+
                         <div class="form-group required">
                             <label for="id" class="col-form-label col-md-4">Training ID</label>
                             <div class="col-md-8">
@@ -186,15 +187,15 @@
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="userId" class="col-form-label col-md-4">Training Name</label>
+                            <label for="idAuthority" class="col-form-label col-md-4">Training Pass</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="userId" name="userId" placeholder="Training Name">
+                                <input type="text" class="form-control" id="idAuthority" name="idAuthority" placeholder="Training Pass">
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="authorityId" class="col-form-label col-md-4">Training Pass</label>
+                            <label for="idUser" class="col-form-label col-md-4">Training Name</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="authorityId" name="authorityId" placeholder="Training Pass">
+                                <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Training Name">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -208,7 +209,7 @@
         </div>
 
         <div class="update-form">
-            <form th:action="@{/updatetraining}" method="post">
+            <form th:action="@{/updateuserauthority}" method="post">
                 <div class="modal fade" id="edit-training" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -219,14 +220,18 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-<!--                                <span id="actor_Id"></span>-->
+                                <!--                                <span id="actor_Id"></span>-->
                                 <div class="form-group required">
                                     <label for="id" class="col-form-label">Training ID</label>
                                     <input type="text" class="form-control" id="id" name="id" placeholder="Religion ID" readonly>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="name" class="col-form-label">Training Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Religion Name">
+                                    <label for="idAuthority" class="col-form-label">Training Name</label>
+                                    <input type="text" class="form-control" id="idAuthority" name="idAuthority" placeholder="Religion Name">
+                                </div>
+                                <div class="form-group required">
+                                    <label for="idUser" class="col-form-label">Training Name</label>
+                                    <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Religion Name">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -238,7 +243,7 @@
                 </div>
             </form>
         </div>
-        
+
         <div class="delete-form">
 
             <form th:action="@{/deletetraining}" method="get">
@@ -296,8 +301,8 @@
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script th:src="@{/dist/js/popper.min.js}"></script>
         <script th:src="@{/dist/js/bootstrap.min.js}"></script>
-            
-        
+
+
         <!-- Icons -->
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
         <script>
@@ -309,30 +314,30 @@
             });
         </script>
         <script>
-            $(document).ready(function (){
+            $(document).ready(function () {
                 $("#edit-training").on('show.bs.modal', function (e) {
                     var _button = $(e.relatedTarget);
                     var _row = _button.parents("tr");
-                    
+
                     var _id = _row.find("#id").text();
                     var _username = _row.find("#username").text();
-                    
+
                     $(this).find("#id").val(_id);
-                    $(this).find("#username").val(_username); 
+                    $(this).find("#username").val(_username);
                 })
             })
         </script>
-                <script>
-            $(document).ready(function (){
+        <script>
+            $(document).ready(function () {
                 $("#softdelete").on('show.bs.modal', function (e) {
                     var _button = $(e.relatedTarget);
                     var _row = _button.parents("tr");
-                    
+
                     var _id = _row.find("#id").text();
                     var _username = _row.find("#username").text();
-                    
+
                     $(this).find("#id").val(_id);
-                    $(this).find("#username").val(_username); 
+                    $(this).find("#username").val(_username);
                 })
             })
         </script>

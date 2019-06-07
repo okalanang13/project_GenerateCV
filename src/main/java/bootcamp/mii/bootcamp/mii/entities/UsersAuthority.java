@@ -6,37 +6,32 @@
 package bootcamp.mii.bootcamp.mii.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author ASUS
  */
 @Entity
-@Table(name = "authority")
+@Table(name = "users_authority")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Authority.findAll", query = "SELECT a FROM Authority a")
-    , @NamedQuery(name = "Authority.findById", query = "SELECT a FROM Authority a WHERE a.id = :id")
-    , @NamedQuery(name = "Authority.findByName", query = "SELECT a FROM Authority a WHERE a.name = :name")
-    , @NamedQuery(name = "Authority.findByIsDelete", query = "SELECT a FROM Authority a WHERE a.isDelete = :isDelete")})
-public class Authority implements Serializable {
+    @NamedQuery(name = "UsersAuthority.findAll", query = "SELECT u FROM UsersAuthority u")
+    , @NamedQuery(name = "UsersAuthority.findById", query = "SELECT u FROM UsersAuthority u WHERE u.id = :id")
+    , @NamedQuery(name = "UsersAuthority.findByIsDelete", query = "SELECT u FROM UsersAuthority u WHERE u.isDelete = :isDelete")})
+public class UsersAuthority implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,24 +39,20 @@ public class Authority implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "name")
-    private String name;
     @Column(name = "is_delete")
     private Character isDelete;
+    @JoinColumn(name = "id_authority", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Authority idAuthority;
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Users idUser;
 
-    public Authority() {
+    public UsersAuthority() {
     }
 
-    public Authority(Integer id) {
+    public UsersAuthority(Integer id) {
         this.id = id;
-    }
-
-    public Authority(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -80,6 +71,22 @@ public class Authority implements Serializable {
         this.isDelete = isDelete;
     }
 
+    public Authority getIdAuthority() {
+        return idAuthority;
+    }
+
+    public void setIdAuthority(Authority idAuthority) {
+        this.idAuthority = idAuthority;
+    }
+
+    public Users getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Users idUser) {
+        this.idUser = idUser;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -87,21 +94,13 @@ public class Authority implements Serializable {
         return hash;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Authority)) {
+        if (!(object instanceof UsersAuthority)) {
             return false;
         }
-        Authority other = (Authority) object;
+        UsersAuthority other = (UsersAuthority) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,7 +109,7 @@ public class Authority implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.mii.bootcamp.mii.entities.Authority[ id=" + id + " ]";
+        return "bootcamp.mii.bootcamp.mii.entities.UsersAuthority[ id=" + id + " ]";
     }
-
+    
 }

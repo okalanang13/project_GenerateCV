@@ -5,7 +5,7 @@
  */
 package bootcamp.mii.bootcamp.mii.controllers;
 
-import bootcamp.mii.bootcamp.mii.entities.UserAuthority;
+import bootcamp.mii.bootcamp.mii.entities.UsersAuthority;
 import bootcamp.mii.bootcamp.mii.repositories.UserAuthorityRepository;
 import bootcamp.mii.bootcamp.mii.services.UserAuthorityService;
 import javax.validation.Valid;
@@ -37,7 +37,7 @@ public class UserAuthorityController {
 
     @PostMapping("/adduserauthority")
 
-    public String adduserauthority(@Valid UserAuthority users) {
+    public String adduserauthority(@Valid UsersAuthority users) {
         users.setIsDelete('0');
         userAuthorityRepository.save(users);
         return "redirect:/userauthority";
@@ -46,7 +46,7 @@ public class UserAuthorityController {
 
     @PostMapping("/updateuserauthority")
 
-    public String updateuserauthority(@Valid UserAuthority users) {
+    public String updateuserauthority(@Valid UsersAuthority users) {
         users.setIsDelete('0');
         userAuthorityRepository.save(users);
         return "redirect:/userauthority";
@@ -55,7 +55,7 @@ public class UserAuthorityController {
 
     @GetMapping("/deleteuserauthority")
 
-    public String deleteuserauthority(@Valid UserAuthority users) {
+    public String deleteuserauthority(@Valid UsersAuthority users) {
         users.setIsDelete('1');
         userAuthorityRepository.save(users);
         return "redirect:/userauthority";
