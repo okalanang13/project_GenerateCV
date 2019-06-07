@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.services;
 
 import bootcamp.mii.bootcamp.mii.entities.Users;
 import bootcamp.mii.bootcamp.mii.repositories.UsersRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class UsersService {
     @Autowired
     private UsersRepository u;
     
-    public Iterable<Users> findAllUsers(){
-        return u.findAll();
+    public List<Users> findAllUsers(){
+        return u.findUser();
     }
 }
