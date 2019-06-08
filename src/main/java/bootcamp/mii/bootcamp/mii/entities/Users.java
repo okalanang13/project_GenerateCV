@@ -42,12 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findByIsDelete", query = "SELECT u FROM Users u WHERE u.isDelete = :isDelete")})
 public class Users implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -62,6 +56,15 @@ public class Users implements Serializable {
     @Size(max = 255)
     @Column(name = "email")
     private String email;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<ConfirmationToken> confirmationTokenList;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "is_delete")
     private Character isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser", fetch = FetchType.LAZY)
@@ -94,29 +97,6 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public Character getIsDelete() {
         return isDelete;
@@ -170,6 +150,39 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "bootcamp.mii.bootcamp.mii.entities.Users[ id=" + id + " ]";
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @XmlTransient
+    public List<ConfirmationToken> getConfirmationTokenList() {
+        return confirmationTokenList;
+    }
+
+    public void setConfirmationTokenList(List<ConfirmationToken> confirmationTokenList) {
+        this.confirmationTokenList = confirmationTokenList;
     }
 
 }

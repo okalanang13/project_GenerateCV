@@ -34,6 +34,7 @@
     <class>bootcamp.mii.bootcamp.mii.entities.Authority</class>
     <class>bootcamp.mii.bootcamp.mii.entities.Users</class>
     <class>bootcamp.mii.bootcamp.mii.entities.UsersAuthority</class>
+    <class>bootcamp.mii.bootcamp.mii.entities.ConfirmationToken</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
