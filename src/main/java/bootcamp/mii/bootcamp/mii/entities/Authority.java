@@ -12,8 +12,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -40,17 +38,19 @@ public class Authority implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
     @Column(name = "is_delete")
     private Character isDelete;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAuthority", fetch = FetchType.LAZY)
+    private List<UsersAuthority> usersAuthorityList;
 
     public Authority() {
     }
@@ -72,6 +72,14 @@ public class Authority implements Serializable {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Character getIsDelete() {
         return isDelete;
     }
@@ -80,19 +88,20 @@ public class Authority implements Serializable {
         this.isDelete = isDelete;
     }
 
+    @XmlTransient
+    public List<UsersAuthority> getUsersAuthorityList() {
+        return usersAuthorityList;
+    }
+
+    public void setUsersAuthorityList(List<UsersAuthority> usersAuthorityList) {
+        this.usersAuthorityList = usersAuthorityList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
@@ -112,5 +121,5 @@ public class Authority implements Serializable {
     public String toString() {
         return "bootcamp.mii.bootcamp.mii.entities.Authority[ id=" + id + " ]";
     }
-
+    
 }
