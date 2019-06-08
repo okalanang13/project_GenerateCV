@@ -23,4 +23,6 @@ public interface UsersRepository extends CrudRepository<Users, String>{
            + " WHERE u.is_delete = '0'"
            ,nativeQuery = true)
     List<Users> findUser();
+    
+    Users findByEmail(String email);
 }
