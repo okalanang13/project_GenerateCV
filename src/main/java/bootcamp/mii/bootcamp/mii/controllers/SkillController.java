@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.controllers;
 
 import bootcamp.mii.bootcamp.mii.entities.Skill;
 import bootcamp.mii.bootcamp.mii.repositories.SkillRepository;
+import bootcamp.mii.bootcamp.mii.services.CategoryService;
 import bootcamp.mii.bootcamp.mii.services.SkillService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,15 @@ public class SkillController {
     private SkillService skillService;
 
     @Autowired
+    private CategoryService categoryservice;
+    
+    @Autowired
     private SkillRepository skillRepository;
 
     @GetMapping("/skill")
     public String skill(Model model) {
         model.addAttribute("dataSkill", skillService.findAllSkill());
+        model.addAttribute("dataCategory", categoryservice.findAllCategory());
         return "skill";
     }
 
