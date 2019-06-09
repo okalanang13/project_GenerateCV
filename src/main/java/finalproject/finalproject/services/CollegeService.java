@@ -14,7 +14,7 @@ public class CollegeService {
     @Autowired
     private CollegeRepository collegeImplement;
     
-    public Iterable<College> findAllCollege(){
-        return collegeImplement.findAll();
+    public Iterable<College> getAllCollege(){
+        return collegeImplement.getAll();
     }
 }
