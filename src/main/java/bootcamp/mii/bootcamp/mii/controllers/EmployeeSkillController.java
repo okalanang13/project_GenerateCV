@@ -7,7 +7,9 @@ package bootcamp.mii.bootcamp.mii.controllers;
 
 import bootcamp.mii.bootcamp.mii.entities.EmployeeSkill;
 import bootcamp.mii.bootcamp.mii.repositories.EmployeeSkillRepository;
+import bootcamp.mii.bootcamp.mii.services.EmployeeService;
 import bootcamp.mii.bootcamp.mii.services.EmployeeSkillService;
+import bootcamp.mii.bootcamp.mii.services.SkillService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +28,18 @@ public class EmployeeSkillController {
 
     @Autowired
     private EmployeeSkillRepository employeeSkillRepository;
+    
+    @Autowired
+    private EmployeeService employeeService;
+    
+    @Autowired
+    private SkillService skillService;
 
     @GetMapping("/employeeskill")
     public String employeeskill(Model model) {
         model.addAttribute("dataES", employeeSkillService.findAllEmployeeSkill());
+        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
+        model.addAttribute("dataSkill", skillService.findAllSkill());
         return "employeeskill";
     }
 
