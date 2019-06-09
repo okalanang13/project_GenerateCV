@@ -5,6 +5,7 @@
  */
 package bootcamp.mii.bootcamp.mii.entities;
 
+import bootcamp.mii.bootcamp.mii.repositories.UsersRepository;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -13,10 +14,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,7 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id")
     , @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
     , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
-    , @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")
     , @NamedQuery(name = "Users.findByIsDelete", query = "SELECT u FROM Users u WHERE u.isDelete = :isDelete")})
 public class Users implements Serializable {
 
@@ -47,35 +50,28 @@ public class Users implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "username")
     private String username;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "password")
     private String password;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 255)
     @Column(name = "email")
     private String email;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<ConfirmationToken> confirmationTokenList;
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Column(name = "is_delete")
     private Character isDelete;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser", fetch = FetchType.LAZY)
-    private List<UsersAuthority> usersAuthorityList;
-
     @ManyToMany(fetch = FetchType.EAGER)
-
     @JoinTable(name = "users_authority", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_authority"))
-
     private Set<Authority> authority;
-
+    @JoinColumn(name = "id_employee", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Employee idEmployee;
     public Users() {
     }
 
@@ -83,10 +79,9 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-    public Users(Integer id, String username, String password) {
+    public Users(Integer id, String username) {
         this.id = id;
         this.username = username;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -97,7 +92,6 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-
     public Character getIsDelete() {
         return isDelete;
     }
@@ -107,24 +101,19 @@ public class Users implements Serializable {
     }
 
     public Set<Authority> getAuthority() {
-
         return authority;
-
     }
 
     public void setAuthority(Set<Authority> authority) {
-
         this.authority = authority;
-
+    }
+    
+    public Employee getIdEmployee() {
+        return idEmployee;
     }
 
-    @XmlTransient
-    public List<UsersAuthority> getUsersAuthorityList() {
-        return usersAuthorityList;
-    }
-
-    public void setUsersAuthorityList(List<UsersAuthority> usersAuthorityList) {
-        this.usersAuthorityList = usersAuthorityList;
+    public void setIdEmployee(Employee idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     @Override
@@ -174,15 +163,6 @@ public class Users implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @XmlTransient
-    public List<ConfirmationToken> getConfirmationTokenList() {
-        return confirmationTokenList;
-    }
-
-    public void setConfirmationTokenList(List<ConfirmationToken> confirmationTokenList) {
-        this.confirmationTokenList = confirmationTokenList;
     }
 
 }

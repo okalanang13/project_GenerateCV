@@ -113,6 +113,8 @@ public class Employee implements Serializable {
     private List<Organization> organizationList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
     private List<EmployeeSkill> employeeSkillList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEmployee", fetch = FetchType.LAZY)
+    private List<Users> usersList;
 
     public Employee() {
     }
@@ -198,6 +200,10 @@ public class Employee implements Serializable {
     @XmlTransient
     public List<Achievement> getAchievementList() {
         return achievementList;
+    }
+    
+    public List<Users> getUsers() {
+        return usersList;
     }
 
     public void setAchievementList(List<Achievement> achievementList) {

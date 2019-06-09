@@ -49,7 +49,6 @@ public class UserAccountController {
             modelAndView.setViewName("error");
         } else {
             user.setPassword(bCryptPasswordEncoder.encode(password));
-            user.setIsDelete('1');
             userRepository.save(user);
             
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
