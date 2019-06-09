@@ -144,7 +144,7 @@
                                 <th>ID College</th>
                                 <th>ID Major</th>
                                 <th>ID Degree</th>
-                                <th>IsDelete</th>
+                                <!--<th>IsDelete</th>-->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -154,11 +154,11 @@
                                 <td id="idCollege" th:text="${data.idCollege.id}"></td>
                                 <td id="idMajor" th:text="${data.idMajor.id}"></td>
                                 <td id="idDegree" th:text="${data.idDegree.id}"></td>
-                                <td id="isDelete" th:text="${data.isDelete}"></td>
+                                <!--<td id="isDelete" th:text="${data.isDelete}"></td>-->
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-education"><i class="fa fa-edit"></i>
                                         Edit</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
                                         Delete</button>
                                 </td>
                             </tr>
@@ -168,118 +168,156 @@
                 </main>
             </div>
         </div>
-
-        <!-- Modal input Dialog -->
-<!--                <div class="modal fade" id="input-province" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Province</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <form th:action="@{/page/province/addDataProvince}" method="post">
-         
-                                <div class="form-group required">
-                                    <label for="provinceId" class="col-form-label col-md-4">Province ID</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="id" name="id" placeholder="Province Identity">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="name" class="col-form-label col-md-4">First Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Province Name">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-success" id="confirm">Save</button>
         
-                                </div>
-                            </form>
-                        </div>
+        <!--input-->
+        <div class="modal fade" id="input-education" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Education</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
-                </div>-->
+                    <form th:action="@{/page/education/addDataEducation}" method="post">
 
-        <!-- Modal update Dialog -->
-        <!--        <div class="modal fade" id="edit-actor" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Region</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="form-group required">
+                            <label for="id" class="col-form-label col-md-4">Education Identifier</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Education Identity">
                             </div>
-                            <form th:action="@{/update/{id}(id=${actor.actorId})}" method="post">
-         
-                                <div class="form-group required">
-                                    <label for="actorId" class="col-form-label col-md-4">Actor ID</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{actorId}" class="form-control" id="actorId" name="actorId" placeholder="Actor Identity">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="firstName" class="col-form-label col-md-4">First Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" name="firstName" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="lastName" class="col-form-label col-md-4">Last Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="lastName" class="col-form-label col-md-4">Last Update</label>
-                                    <div class="col-md-8">
-                                        <input type="date" th:field="*{lastUpdate}" class="form-control" id="lastUpdate" name="lastUpdate" placeholder="Last Update">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-success" id="confirm">Save</button>
-        
-                                </div>
-                            </form>
                         </div>
-                    </div>
-                </div>-->
-
-        <!--        <div class="update-form">
-                    <form th:action="@{/update}" method="get">
-                        <div class="modal fade" id="edit-actor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <span id="actor_Id"></span>
-                                        <div class="form-group required">
-                                            <label for="actorId" class="col-form-label">Actor ID</label>
-                                            <input type="text" class="form-control" id="actor_Id" name="actorId" placeholder="Actor Identity" readonly>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="firstName" class="col-form-label">First Name</label>
-                                            <input type="text" class="form-control" id="first_Name" name="firstName" placeholder="First Name">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="lastName" class="col-form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="last_Name" name="lastName" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-primary" value="Save" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="idCollege" class="col-form-label col-md-4">College</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idCollege" id="idProvince" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataCollege}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="idMajor" class="col-form-label col-md-4">Major</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idMajor" id="idMajor" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataMajor}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="idDegree" class="col-form-label col-md-4">Degree</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idDegree" id="idDegree" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataDegree}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success" id="confirm">Save</button>
                         </div>
                     </form>
-                </div>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="update-form">
+            <form th:action="@{/page/education/updateDataEducation}" method="post">
+                <div class="modal fade" id="edit-education" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group required">
+                                    <label for="id" class="col-form-label">Education Identifier</label>
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="Education Identifier" readonly>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="idCollege" class="col-form-label col-md-4">College</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idCollege" id="idCollege" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataCollege}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="idMajor" class="col-form-label col-md-4">Major</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idMajor" id="idMajor" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataMajor}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="idDegree" class="col-form-label col-md-4">Province</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idDegree" id="idDegree" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataDegree}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="hidden" class="form-control" id="isDel" name="isDelete" value="false" placeholder="isDelete">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="delete-form">
+            <form th:action="@{/page/education/softDeleteDataEducation}" method="get">
+                <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete District</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control" id="id" name="id" readonly>
+                                <input type="hidden" class="form-control" id="name" name="name">
+                                <input type="hidden" class="form-control" id="idCollege" name="idCollege">
+                                <input type="hidden" class="form-control" id="idMajor" name="idMajor">
+                                <input type="hidden" class="form-control" id="idDegree" name="idDegree">
+                                <input type="hidden" class="form-control" id="isDel" name="isDelete" value="true" placeholder="isDelete">
+                                Anda yakin ingin menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Delete" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -300,6 +338,46 @@
             $(document).ready(function () {
                 $('#example').DataTable();
             });
+        </script>
+        <script>
+            $(document).ready(function () {
+            $("#edit-education").on('show.bs.modal', function (e) {
+            var _button = $(e.relatedTarget);
+            var _row = _button.parents("tr");
+            var _id = _row.find("#id").text();
+            var _name = _row.find("#name").text();
+            var _idCollege = _row.find("#idCollege").text();
+            var _idMajor = _row.find("#idMajor").text();
+            var _idDegree = _row.find("#idDegree").text();
+            $(this).find("#id").val(_id);
+            $(this).find("#name").val(_name);
+            $(this).find("#idCollege").val(_idCollege);
+            $(this).find("#idMajor").val(_idMajor);
+            $(this).find("#idDegree").val(_idDegree);
+            })
+            })
+        </script>
+
+        <!--var _id untuk inisialisasi dari #id dan diusahakan beda nama dengan fungsi update diatas
+            #id didapat dari penamaan id row saat getAll
+            $(this).find("#id") didapat dari row pada fungsi delete !!-->
+        <script>
+            $(document).ready(function () {
+            $("#softdelete").on('show.bs.modal', function (e) {
+            var _button = $(e.relatedTarget);
+            var _row = _button.parents("tr");
+            var _id = _row.find("#id").text();
+            var _name = _row.find("#name").text();
+            var _idCollege = _row.find("#idCollege").text();
+            var _idMajor = _row.find("#idMajor").text();
+            var _idDegree = _row.find("#idDegree").text();
+            $(this).find("#id").val(_id);
+            $(this).find("#name").val(_name);
+            $(this).find("#idCollege").val(_idCollege);
+            $(this).find("#idMajor").val(_idMajor);
+            $(this).find("#idDegree").val(_idDegree);
+            })
+            })
         </script>
 
     </body>
