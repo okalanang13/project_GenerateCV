@@ -37,7 +37,7 @@ public class UserAuthorityController {
 
     @PostMapping("/adduserauthority")
 
-    public String adduserauthority(UsersAuthority users) {
+    public String adduserauthority(@Valid UsersAuthority users) {
         users.setIsDelete('0');
         userAuthorityRepository.save(users);
         return "redirect:/userauthority";
@@ -46,7 +46,7 @@ public class UserAuthorityController {
 
     @PostMapping("/updateuserauthority")
 
-    public String updateuserauthority(UsersAuthority users) {
+    public String updateuserauthority(@Valid UsersAuthority users) {
         users.setIsDelete('0');
         userAuthorityRepository.save(users);
         return "redirect:/userauthority";
@@ -55,7 +55,7 @@ public class UserAuthorityController {
 
     @GetMapping("/deleteuserauthority")
 
-    public String deleteuserauthority(UsersAuthority users) {
+    public String deleteuserauthority(@Valid UsersAuthority users) {
         users.setIsDelete('1');
         userAuthorityRepository.save(users);
         return "redirect:/userauthority";
