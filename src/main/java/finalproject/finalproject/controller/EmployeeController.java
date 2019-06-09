@@ -25,7 +25,7 @@ public class EmployeeController {
     
     @GetMapping("/page/employee")
     public String employee(Model model) {
-        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
+        model.addAttribute("dataEmployee", employeeRepository.getAll());
         return "employee";
     }
     

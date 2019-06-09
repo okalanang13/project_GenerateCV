@@ -20,7 +20,7 @@ public class EmployeeService {
     private EmployeeRepository employeeImplement;
     
     
-    public Iterable<Employee> findAllEmployee(){
-        return employeeImplement.findAll();
+    public Iterable<Employee> getAllEmployee(){
+        return employeeImplement.getAll();
     }
 }

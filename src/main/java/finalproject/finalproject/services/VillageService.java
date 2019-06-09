@@ -15,7 +15,7 @@ public class VillageService {
     private VillageRepository villageImplement;
     
     
-    public Iterable<Village> findAllVillage(){
-        return villageImplement.findAll();
+    public Iterable<Village> getAllVillage(){
+        return villageImplement.getAll();
     }
 }

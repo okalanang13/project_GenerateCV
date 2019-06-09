@@ -15,7 +15,7 @@ public class SubdistrictService {
     private SubdistrictRepository subdistrictImplement;
     
     
-    public Iterable<Subdistrict> findAllSubdistrict(){
-        return subdistrictImplement.findAll();
+    public Iterable<Subdistrict> getAllSubdistrict(){
+        return subdistrictImplement.getAll();
     }
 }

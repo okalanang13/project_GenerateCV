@@ -6,6 +6,9 @@
 package finalproject.finalproject.repositories;
 
 import finalproject.finalproject.entities.Employee;
+import finalproject.finalproject.entities.Province;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +18,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer>{
-    
+    @Query(value = "select * from employee where is_delete = 'false'", nativeQuery = true)
+    List<Employee> getAll();
 }

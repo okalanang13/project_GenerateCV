@@ -34,7 +34,7 @@ public class ExperienceController {
     //proses menampilkan semua data actor
     @GetMapping("/page/experience")
     public String experience(Model model) {
-        model.addAttribute("dataExperience", experienceService.findAllExperience());
+        model.addAttribute("dataExperience", experienceService.getAllExperience());
         return "experience";
     }
     

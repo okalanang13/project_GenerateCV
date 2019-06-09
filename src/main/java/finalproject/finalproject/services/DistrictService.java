@@ -15,7 +15,7 @@ public class DistrictService {
     private DistrictRepository districtImplement;
     
     
-    public Iterable<District> findAllDistrict(){
-        return districtImplement.findAll();
+    public Iterable<District> getAllDistrict(){
+        return districtImplement.getAll();
     }
 }

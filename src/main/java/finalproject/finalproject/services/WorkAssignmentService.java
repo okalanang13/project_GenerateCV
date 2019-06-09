@@ -19,7 +19,7 @@ public class WorkAssignmentService {
     @Autowired
     private WorkAssignmentRepository workAssImplement;
     
-    public Iterable<WorkAssignment> findAllWorkAss(){
-        return workAssImplement.findAll();
+    public Iterable<WorkAssignment> getAllWorkAss(){
+        return workAssImplement.getAll();
     }
 }

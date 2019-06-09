@@ -34,7 +34,7 @@ public class EmployeeEducationController {
     //proses menampilkan semua data actor
     @GetMapping("/page/employeeEducation")
     public String employeeEducation(Model model) {
-        model.addAttribute("dataEmployeeEducation", employeeEducationService.findAllEmpEd());
+        model.addAttribute("dataEmployeeEducation", employeeEducationService.getAllEmpEd());
         return "employeeEducation";
     }
     

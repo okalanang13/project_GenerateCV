@@ -6,6 +6,8 @@
 package finalproject.finalproject.repositories;
 
 import finalproject.finalproject.entities.EmployeeEducation;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EmployeeEducationRepository extends CrudRepository<EmployeeEducation, Integer>{
-    
+    @Query(value = "select * from employee_education where is_delete = 'false'", nativeQuery = true)
+    List<EmployeeEducation> getAll();
 }

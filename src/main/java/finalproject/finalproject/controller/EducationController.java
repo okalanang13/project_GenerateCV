@@ -34,7 +34,7 @@ public class EducationController {
     //proses menampilkan semua data actor
     @GetMapping("/page/education")
     public String education(Model model) {
-        model.addAttribute("dataEducation", educationService.findAllEducation());
+        model.addAttribute("dataEducation", educationService.getAllEducation());
         return "education";
     }
     

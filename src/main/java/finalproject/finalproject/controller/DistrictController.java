@@ -24,7 +24,7 @@ public class DistrictController {
     
     @GetMapping("/page/district")
     public String district(Model model) {
-        model.addAttribute("dataDistrict", districtService.findAllDistrict());
+        model.addAttribute("dataDistrict", districtService.getAllDistrict());
         return "district";
     }
     

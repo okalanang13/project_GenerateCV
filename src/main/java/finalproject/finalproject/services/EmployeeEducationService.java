@@ -19,7 +19,7 @@ public class EmployeeEducationService {
     @Autowired
     private EmployeeEducationRepository empEdImplement;
     
-    public Iterable<EmployeeEducation> findAllEmpEd(){
-        return empEdImplement.findAll();
+    public Iterable<EmployeeEducation> getAllEmpEd(){
+        return empEdImplement.getAll();
     }
 }

@@ -19,7 +19,7 @@ public class EmployeeLanguageService {
     @Autowired
     private EmployeeLanguageRepository empLaImplement;
     
-    public Iterable<EmployeeLanguage> findAllEmpla(){
-        return empLaImplement.findAll();
+    public Iterable<EmployeeLanguage> getAllEmpla(){
+        return empLaImplement.getAll();
     }
 }

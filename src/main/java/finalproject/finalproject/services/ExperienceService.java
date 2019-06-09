@@ -14,7 +14,7 @@ public class ExperienceService {
     @Autowired
     private ExperienceRepository experienceImplement;
     
-    public Iterable<Experience> findAllExperience(){
-        return experienceImplement.findAll();
+    public Iterable<Experience> getAllExperience(){
+        return experienceImplement.getAll();
     }
 }

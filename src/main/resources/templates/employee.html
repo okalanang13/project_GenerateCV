@@ -155,7 +155,7 @@
                                 <th>ID_Religion</th>
                                 <th>ID_Manager</th>
                                 <th>ID_Village</th>
-                                <th>IsDelete</th>
+                                <!--<th>IsDelete</th>-->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -174,9 +174,9 @@
                                 <td id="phone" th:text="${data.phone}"></td>
                                 <td id="address" th:text="${data.address}"></td>
                                 <td id="idReligion" th:text="${data.idReligion.id}"></td>
-                                <td id="idManager" th:text="${data.idManager}"></td>
+                                <td id="idManager" th:text="${data.idManager.id}"></td>
                                 <td id="idVillage" th:text="${data.idVillage.id}"></td>
-                                <td id="isDelete" th:text="${data.isDelete}"></td>
+                                <!--<td id="isDelete" th:text="${data.isDelete}"></td>-->
 
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-actor"><i class="fa fa-edit"></i>

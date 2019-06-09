@@ -14,7 +14,7 @@ public class EducationService {
     @Autowired
     private EducationRepository educationImplement;
     
-    public Iterable<Education> findAllEducation(){
-        return educationImplement.findAll();
+    public Iterable<Education> getAllEducation(){
+        return educationImplement.getAll();
     }
 }

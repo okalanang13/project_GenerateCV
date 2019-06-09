@@ -24,7 +24,7 @@ public class SubdistrictController {
     
     @GetMapping("/page/subdistrict")
     public String subdistrict(Model model) {
-        model.addAttribute("dataSubdistrict", subdistrictService.findAllSubdistrict());
+        model.addAttribute("dataSubdistrict", subdistrictService.getAllSubdistrict());
         return "subdistrict";
     }
     

@@ -25,7 +25,7 @@ public class VillageController {
     
     @GetMapping("/page/village")
     public String village(Model model) {
-        model.addAttribute("dataVillage", villageService.findAllVillage());
+        model.addAttribute("dataVillage", villageService.getAllVillage());
         return "village";
     }
     

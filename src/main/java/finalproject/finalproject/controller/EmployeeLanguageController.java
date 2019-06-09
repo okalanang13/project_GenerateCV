@@ -34,7 +34,7 @@ public class EmployeeLanguageController {
     //proses menampilkan semua data actor
     @GetMapping("/page/employeeLanguage")
     public String employeeLanguage(Model model) {
-        model.addAttribute("dataEmpla", employeeLanguageService.findAllEmpla());
+        model.addAttribute("dataEmpla", employeeLanguageService.getAllEmpla());
         return "employeeLanguage";
     }
     

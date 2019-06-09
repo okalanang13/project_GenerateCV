@@ -34,7 +34,7 @@ public class WorkAssignmentController {
     //proses menampilkan semua data actor
     @GetMapping("/page/workAssignment")
     public String workAssignment(Model model) {
-        model.addAttribute("dataWorkAssignment", workAssignmentService.findAllWorkAss());
+        model.addAttribute("dataWorkAssignment", workAssignmentService.getAllWorkAss());
         return "workAssignment";
     }
     
