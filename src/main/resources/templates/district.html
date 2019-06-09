@@ -143,7 +143,7 @@
                                 <th>ID</th>
                                 <th>District Name</th>
                                 <th>ID Province</th>
-                                <th>IsDelete</th>
+                                <!--<th>IsDelete</th>-->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -152,11 +152,11 @@
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="name" th:text="${data.name}"></td>
                                 <td id="idProvince" th:text="${data.idProvince.id}"></td>
-                                <td id="isDelete" th:text="${data.isDelete}"></td>
+                                <!--<td id="isDelete" th:text="${data.isDelete}"></td>-->
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-district"><i class="fa fa-edit"></i>
                                         Edit</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
                                         Delete</button>
                                 </td>
                             </tr>
@@ -169,121 +169,118 @@
 
         <!-- Modal input Dialog -->
         <div class="modal fade" id="input-district" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add College</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <form th:action="@{/page/district/addDataDistrict}" method="post">
+
+                        <div class="form-group required">
+                            <label for="id" class="col-form-label col-md-4">District Identifier</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="District Identity">
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label for="name" class="col-form-label col-md-4">District Name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="District Name">
+                            </div>
+                            <!--<input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group required">
+                                    <label for="idProvince" class="col-form-label col-md-4">Village</label>
+                                    <div class="col-md-10">
+                                        <select type="text" name="idProvince" id="idProvince" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataProvince}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="false" placeholder="isDelete">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success" id="confirm">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="update-form">
+            <form th:action="@{/page/district/updateDataDistrict}" method="post">
+                <div class="modal fade" id="edit-district" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Add District</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <form th:action="@{/page/district/addDataDistrict}" method="post">
-
+                            <div class="modal-body">
                                 <div class="form-group required">
-                                    <label for="id" class="col-form-label col-md-4">District Identifier</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="id" name="id" placeholder="District Identity">
-                                    </div>
+                                    <label for="id" class="col-form-label">District Identifier</label>
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="College Identifier" readonly>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="name" class="col-form-label col-md-4">District Name</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="District Name">
-                                    </div>
+                                    <label for="name" class="col-form-label">District Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="College Name">
                                 </div>
                                 <div class="form-group required">
-                                    <label for="idProvince" class="col-form-label col-md-4">Province Identifier</label>
+                                    <label for="idVillage" class="col-form-label col-md-4">Province</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" id="idProvince" name="idProvince" placeholder="Province Identifier">
+                                        <select type="text" name="idProvince" id="idProvince" class="form-control" >
+                                            <option value="0">-PILIH-</option>
+                                            <option th:each="data:${dataProvince}" th:value="${data.id}" th:text="${data.name}"></option>
+                                        </select>
                                     </div>
-                                        <input type="hidden" class="form-control" id="isDelete" name="isDelete" value="1" placeholder="isDelete">
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-success" id="confirm">Save</button>
-                                </div>
-                            </form>
+                                <input type="hidden" class="form-control" id="isDel" name="isDelete" value="false" placeholder="isDelete">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save" />
+                            </div>
                         </div>
                     </div>
                 </div>
+            </form>
+        </div>
 
-        <!-- Modal update Dialog -->
-        <!--        <div class="modal fade" id="edit-actor" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+        <div class="delete-form">
+            <form th:action="@{/page/district/softDeleteDataDistrict}" method="get">
+                <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Add Region</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h5 class="modal-title" id="exampleModalLabel">Delete District</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <form th:action="@{/update/{id}(id=${actor.actorId})}" method="post">
-         
-                                <div class="form-group required">
-                                    <label for="actorId" class="col-form-label col-md-4">Actor ID</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{actorId}" class="form-control" id="actorId" name="actorId" placeholder="Actor Identity">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="firstName" class="col-form-label col-md-4">First Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{firstName}" class="form-control" id="firstName" name="firstName" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="lastName" class="col-form-label col-md-4">Last Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="lastName" class="col-form-label col-md-4">Last Update</label>
-                                    <div class="col-md-8">
-                                        <input type="date" th:field="*{lastUpdate}" class="form-control" id="lastUpdate" name="lastUpdate" placeholder="Last Update">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-success" id="confirm">Save</button>
-        
-                                </div>
-                            </form>
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control" id="id" name="id" readonly>
+                                <input type="hidden" class="form-control" id="name" name="name">
+                                <input type="hidden" class="form-control" id="idProvince" name="idProvince">
+                                <input type="hidden" class="form-control" id="isDel" name="isDelete" value="true" placeholder="isDelete">
+                                Anda yakin ingin menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Delete" />
+                            </div>
                         </div>
                     </div>
-                </div>-->
-
-        <!--        <div class="update-form">
-                    <form th:action="@{/update}" method="get">
-                        <div class="modal fade" id="edit-actor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <span id="actor_Id"></span>
-                                        <div class="form-group required">
-                                            <label for="actorId" class="col-form-label">Actor ID</label>
-                                            <input type="text" class="form-control" id="actor_Id" name="actorId" placeholder="Actor Identity" readonly>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="firstName" class="col-form-label">First Name</label>
-                                            <input type="text" class="form-control" id="first_Name" name="firstName" placeholder="First Name">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="lastName" class="col-form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="last_Name" name="lastName" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-primary" value="Save" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>-->
+                </div>
+            </form>
+        </div>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -302,10 +299,41 @@
         </script>
         <script>
             $(document).ready(function () {
-                $('#example').DataTable();
+            $('#example').DataTable();
             });
         </script>
+        <script>
+            $(document).ready(function () {
+            $("#edit-district").on('show.bs.modal', function (e) {
+            var _button = $(e.relatedTarget);
+            var _row = _button.parents("tr");
+            var _id = _row.find("#id").text();
+            var _name = _row.find("#name").text();
+            var _idProvince = _row.find("#idProvince").text();
+            $(this).find("#id").val(_id);
+            $(this).find("#name").val(_name);
+            $(this).find("#idProvince").val(_idProvince);
+            })
+            })
+        </script>
 
+        <!--var _id untuk inisialisasi dari #id dan diusahakan beda nama dengan fungsi update diatas
+            #id didapat dari penamaan id row saat getAll
+            $(this).find("#id") didapat dari row pada fungsi delete !!-->
+        <script>
+            $(document).ready(function () {
+            $("#softdelete").on('show.bs.modal', function (e) {
+            var _button = $(e.relatedTarget);
+            var _row = _button.parents("tr");
+            var _id = _row.find("#id").text();
+            var _name = _row.find("#name").text();
+            var _idProvince = _row.find("#idProvince").text();
+            $(this).find("#id").val(_id);
+            $(this).find("#name").val(_name);
+            $(this).find("#idProvince").val(_idProvince);
+            })
+            })
+        </script>
     </body>
 
 </html>
