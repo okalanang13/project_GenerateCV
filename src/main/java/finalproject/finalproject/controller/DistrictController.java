@@ -41,6 +41,7 @@ public class DistrictController {
     //proses add daa dengan fungsi save dari crud repo
     @PostMapping("/page/district/addDataDistrict")
     public String addDataDistrict (@Valid District district){
+        district.setIsDelete("false");
         districtRepository.save(district);
         return "redirect:/page/district";
     }
