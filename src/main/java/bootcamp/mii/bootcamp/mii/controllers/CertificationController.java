@@ -36,6 +36,7 @@ public class CertificationController {
     @PostMapping("/addcertification")
 
     public String addcertification(@Valid Certification c) {
+        c.setId(0);
         c.setIsDelete('0');
         certificationRepository.save(c);
         return "redirect:/certification";

@@ -150,29 +150,31 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Action</th>
                                 <th>Id</th>
-                                <th>Nama</th>
+                                <th>Name</th>
                                 <th>Description</th>
                                 <th>Date</th>
                                 <th>ID Employee</th>
                                 <th>Employee</th>
-                                <th>Action</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each = "data:${dataAchievement}">
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-achievement"><i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="name" th:text="${data.name}"></td>
                                 <td id="description" th:text="${data.description}"></td>
                                 <td id="dateAchiev" th:text="${data.dateAchiev}"></td>
                                 <td id="idEmployee" th:text="${data.idEmployee.id}"></td>
                                 <td id="nameEmployee" th:text="${data.idEmployee.firstName}"></td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-achievement"><i class="fa fa-edit"></i>
-                                        Edit</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
-                                        Delete</button>
-                                </td>
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -283,7 +285,7 @@
         </div>
         <div class="delete-form">
 
-            <form th:action="@{/deleteachievement/id}" method="get">
+            <form th:action="@{/deleteachievement}" method="get">
 
                 <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -306,6 +308,10 @@
                             <div class="modal-body">
 
                                 <input type="hidden" class="form-control" id="id" name="id" readonly>
+                                <input type="hidden" class="form-control" id="name" name="name">
+                                <input type="hidden" class="form-control" id="description" name="description">
+                                <input type="hidden" class="form-control" id="dateAchiev" name="dateAchiev">
+                                <input type="hidden" class="form-control" id="idEmployee" name="idEmployee">
 
                                 Anda yakin ingin menghapus data ini?
 

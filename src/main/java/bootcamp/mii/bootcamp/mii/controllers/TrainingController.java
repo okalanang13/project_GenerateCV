@@ -37,6 +37,7 @@ public class TrainingController {
     @PostMapping("/addtraining")
 
     public String addtraining(@Valid Training t) {
+        t.setId(0);
         t.setIsDelete('0');
         trainingRepository.save(t);
         return "redirect:/training";

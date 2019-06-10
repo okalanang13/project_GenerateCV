@@ -31,7 +31,7 @@ public class AchievementController {
 
     @Autowired
     private AchievementService achievementService;
-    
+
     @Autowired
     private EmployeeService employeeService;
 
@@ -48,6 +48,7 @@ public class AchievementController {
     @PostMapping("/addachievement")
 
     public String addachievement(@Valid Achievement achievement) {
+        achievement.setId(0);
         achievement.setIsDelete('0');
         achievementRepository.save(achievement);
         return "redirect:/achievement";
@@ -56,18 +57,19 @@ public class AchievementController {
 
     @PostMapping("/updateachievement/{id}")
 
-    public String updateachievement(@PathVariable("id") String id,Achievement a) {
+    public String updateachievement(@PathVariable("id") String id, Achievement a) {
         a.setIsDelete('0');
         achievementRepository.save(a);
         return "redirect:/achievement";
 
     }
-    
-    @GetMapping("/deleteachievement/{id}")
 
-    public String deleteachievement(@PathVariable("id") String id,Achievement a) {
-        achievementRepository.delete(a);
+    @GetMapping("/deleteachievement")
+    public String deleteachievement(@Valid Achievement achievement) {
+        achievement.setIsDelete('1');
+        achievementRepository.save(achievement);
         return "redirect:/achievement";
 
     }
+
 }

@@ -151,8 +151,11 @@
                         <thead>
                             <tr>
                                 <th>Action</th>
+                                <th>ID</th>
                                 <th>Rating</th>
+                                <th>ID Employee</th>
                                 <th>Employee</th>
+                                <th>ID Skill</th> 
                                 <th>Skill</th>                           
                             </tr>
                         </thead>
@@ -160,15 +163,15 @@
                             <tr th:each = "data:${dataES}">
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-skill"><i class="fa fa-edit"></i>
-                                        Edit</button>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
-                                        Delete</button>
+                                    </button>
                                 </td>
-                                <td id="id" th:text="${data.id}" style=" display:none;"></td>
+                                <td id="id" th:text="${data.id}"></td>
                                 <td id="rating" th:text="${data.rating}"></td>
-                                <td id="idEmployee" th:text="${data.idEmployee.id}" style=" display:none;"></td>
+                                <td id="idEmployee" th:text="${data.idEmployee.id}" ></td>
                                 <td id="nameEmployee" th:text="${data.idEmployee.firstName}"></td>
-                                <td id="idSkill" th:text="${data.idSkill.id}" style=" display:none;"></td>
+                                <td id="idSkill" th:text="${data.idSkill.id}" ></td>
                                 <td id="nameSkill" th:text="${data.idSkill.name}"></td>
 
                             </tr>

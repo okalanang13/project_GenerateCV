@@ -151,6 +151,7 @@
                         <thead>
                             <tr>
                                 <th>Action</th>
+                                <th>ID</th>
                                 <th>Name</th>
                             </tr>
                         </thead>
@@ -158,11 +159,11 @@
                             <tr th:each = "data:${dataReligion}">
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-Religion"><i class="fa fa-edit"></i>
-                                        Edit</button>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
-                                        Delete</button>
+                                    </button>
                                 </td>
-                                <td id="id" th:text="${data.id}" style=" display:none;"></td>
+                                <td id="id" th:text="${data.id}"></td>
                                 <td id="name" th:text="${data.name}"></td>
                                 
                             </tr>
