@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.services;
 
 import bootcamp.mii.bootcamp.mii.entities.UsersAuthority;
 import bootcamp.mii.bootcamp.mii.repositories.UserAuthorityRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class UserAuthorityService {
     @Autowired
     private UserAuthorityRepository user;
     
-    public Iterable<UsersAuthority> findAllUserAuthority(){
-        return user.findAll();
+    public List<UsersAuthority> findAllUserAuthority(){
+        return user.findUserAuthority();
     }
 }

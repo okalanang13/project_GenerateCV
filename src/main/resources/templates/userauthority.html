@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico/}">
-        <title>Training</title>
+        <title>Access</title>
         <link rel="stylesheet" th:href="@{/dist/css/bootstrap.min.css}"  media="screen"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" th:href="@{/dist/font-awesome/css/font-awesome.min.css}">
@@ -44,79 +44,85 @@
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/religion}">
                                     <span data-feather="file"></span>
-                                    Data Religion
+                                    Religion
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/category}">
                                     <span data-feather="file"></span>
-                                    Data Category Skill
+                                    Category Skill
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/skill}">
                                     <span data-feather="file"></span>
-                                    Data Skill
+                                    Skill
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/employeeskill}">
                                     <span data-feather="file"></span>
-                                    Data Employee Skill
+                                    Employee Skill
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/achievement}">
                                     <span data-feather="file"></span>
-                                    Data Achievement
+                                    Achievement
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/training}">
                                     <span data-feather="file"></span>
-                                    Data Training
+                                    Training
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/employeetraining}">
                                     <span data-feather="file"></span>
-                                    Data Employee Training
+                                    Employee Training
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/certification}">
                                     <span data-feather="file"></span>
-                                    Data Certification
+                                    Certification
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/employeecertification}">
                                     <span data-feather="file"></span>
-                                    Data Employee Certification
+                                    Employee Certification
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/organization}">
                                     <span data-feather="file"></span>
-                                    Data Organization
+                                    Organization
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/role}">
                                     <span data-feather="file"></span>
-                                    Data Role
+                                    Role
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/users}">
                                     <span data-feather="file"></span>
-                                    Data User
+                                    User
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" th:href="@{/userauthority}">
                                     <span data-feather="file"></span>
-                                    Data User Authority
+                                    User Authority
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" th:href="@{/register}">
+                                    <span data-feather="file"></span>
+                                    Add User
                                 </a>
                             </li>
                         </ul>
@@ -126,7 +132,7 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Data Training</h1>
+                        <h1 class="h2">Data Access</h1>
                         <!-- <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                   <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -144,24 +150,27 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Action</th>
                                 <th>Id</th>
                                 <th>ID Authority</th>
+                                <th>Authority</th>
                                 <th>ID User</th>
-                                <th>Action</th>
+                                <th>User</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each = "data:${dataUserauthority}">
-                                <td id="id" th:text="${data.id}"></td>
-                                <td id="idAuthority" th:text="${data.idAuthority.id}"></td>
-                                <td id="idUser" th:text="${data.idUser.id}"></td>
-
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-training"><i class="fa fa-edit"></i>
-                                        Edit</button>
+                                    </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
-                                        Delete</button>
+                                    </button>
                                 </td>
+                                <td id="id" th:text="${data.id}"></td>
+                                <td id="idAuthority" th:text="${data.idAuthority.id}"></td>
+                                <td id="nameAuthority" th:text="${data.idAuthority.name}"></td>
+                                <td id="idUser" th:text="${data.idUser.id}"></td>
+                                <td id="nameUser" th:text="${data.idUser.username}"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -175,27 +184,33 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Training</h4>
+                        <h4 class="modal-title">Add Access</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <form th:action="@{/adduserauthority}" method="post">
 
                         <div class="form-group required">
-                            <label for="id" class="col-form-label col-md-4">Training ID</label>
+                            <label for="id" class="col-form-label col-md-4">Access ID</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Training ID">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Access ID">
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="idAuthority" class="col-form-label col-md-4">Training Pass</label>
+                            <label for="idAuthority" class="col-form-label col-md-4">Authority</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="idAuthority" name="idAuthority" placeholder="Training Pass">
+                                <select type="text" name="idAuthority" id="idAuthority" class="form-control" >
+                                    <option value="0">-PILIH-</option>
+                                    <option th:each="data:${dataAuthority}" th:value="${data.id}" th:text="${data.name}"></option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="idUser" class="col-form-label col-md-4">Training Name</label>
+                            <label for="idUser" class="col-form-label col-md-4">User</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Training Name">
+                                <select type="text" name="idUser" id="idUser" class="form-control" >
+                                    <option value="0">-PILIH-</option>
+                                    <option th:each="data:${dataUsers}" th:value="${data.id}" th:text="${data.username}"></option>
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -214,7 +229,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Update Training</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Update Access</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -222,16 +237,22 @@
                             <div class="modal-body">
                                 <!--                                <span id="actor_Id"></span>-->
                                 <div class="form-group required">
-                                    <label for="id" class="col-form-label">Training ID</label>
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="Religion ID" readonly>
+                                    <label for="id" class="col-form-label">Access ID</label>
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="Access ID" readonly>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="idAuthority" class="col-form-label">Training Name</label>
-                                    <input type="text" class="form-control" id="idAuthority" name="idAuthority" placeholder="Religion Name">
+                                    <label for="idAuthority" class="col-form-label">Authority</label>
+                                    <select type="text" name="idAuthority" id="idAuthority" class="form-control" >
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataAuthority}" th:value="${data.id}" th:text="${data.name}"></option>
+                                    </select>
                                 </div>
                                 <div class="form-group required">
-                                    <label for="idUser" class="col-form-label">Training Name</label>
-                                    <input type="text" class="form-control" id="idUser" name="idUser" placeholder="Religion Name">
+                                    <label for="idUser" class="col-form-label">User</label>
+                                    <select type="text" name="idUser" id="idUser" class="form-control" >
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataUsers}" th:value="${data.id}" th:text="${data.username}"></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -246,7 +267,7 @@
 
         <div class="delete-form">
 
-            <form th:action="@{/deletetraining}" method="get">
+            <form th:action="@{/deleteuserauthority}" method="get">
 
                 <div class="modal fade" id="softdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
@@ -256,7 +277,7 @@
 
                             <div class="modal-header">
 
-                                <h5 class="modal-title" id="exampleModalLabel">Delete Training</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Authority</h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
@@ -268,8 +289,10 @@
 
                             <div class="modal-body">
 
-                                <input type="hidden" class="form-control" id="id" name="id" readonly>
-                                <input type="hidden" class="form-control" id="name" name="name">
+                                <input type="hidden" class="form-control" id="id" name="id">
+                                <input type="hidden" class="form-control" id="idAuthority" name="idAuthority">
+                                <input type="hidden" class="form-control" id="idUser" name="idUser">
+
 
                                 Anda yakin ingin menghapus data ini?
 
@@ -320,10 +343,16 @@
                     var _row = _button.parents("tr");
 
                     var _id = _row.find("#id").text();
-                    var _username = _row.find("#username").text();
+                    var _idAuthority = _row.find("#idAuthority").text();
+                    var _nameAuthority = _row.find("#nameAuthority").text();
+                    var _idUser = _row.find("#idUser").text();
+                    var _nameUser = _row.find("#nameUser").text();
 
                     $(this).find("#id").val(_id);
-                    $(this).find("#username").val(_username);
+                    $(this).find("#idAuthority").val(_idAuthority);
+                    $(this).find("#nameAuthority").val(_nameAuthority);
+                    $(this).find("#idUser").val(_idUser);
+                    $(this).find("#nameUser").val(_nameUser);
                 })
             })
         </script>
@@ -334,10 +363,16 @@
                     var _row = _button.parents("tr");
 
                     var _id = _row.find("#id").text();
-                    var _username = _row.find("#username").text();
+                    var _idAuthority = _row.find("#idAuthority").text();
+                    var _nameAuthority = _row.find("#nameAuthority").text();
+                    var _idUser = _row.find("#idUser").text();
+                    var _nameUser = _row.find("#nameUser").text();
 
                     $(this).find("#id").val(_id);
-                    $(this).find("#username").val(_username);
+                    $(this).find("#idAuthority").val(_idAuthority);
+                    $(this).find("#nameAuthority").val(_nameAuthority);
+                    $(this).find("#idUser").val(_idUser);
+                    $(this).find("#nameUser").val(_nameUser);
                 })
             })
         </script>
