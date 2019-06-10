@@ -46,6 +46,7 @@ public class EmployeeSkillController {
     @PostMapping("/addemployeeskill")
 
     public String addemployeeskill(@Valid EmployeeSkill employeeSkill) {
+        employeeSkill.setId(0);
         employeeSkill.setIsDelete('0');
         employeeSkillRepository.save(employeeSkill);
         return "redirect:/employeeskill";
