@@ -8,6 +8,7 @@ package bootcamp.mii.bootcamp.mii.controllers;
 import bootcamp.mii.bootcamp.mii.entities.Achievement;
 import bootcamp.mii.bootcamp.mii.repositories.AchievementRepository;
 import bootcamp.mii.bootcamp.mii.services.AchievementService;
+import bootcamp.mii.bootcamp.mii.services.EmployeeService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.validation.Valid;
@@ -30,22 +31,17 @@ public class AchievementController {
 
     @Autowired
     private AchievementService achievementService;
+    
+    @Autowired
+    private EmployeeService employeeService;
 
     @Autowired
     private AchievementRepository achievementRepository;
 
-    @InitBinder
-
-    public void initBinder(WebDataBinder binder) {
-
-        binder.registerCustomEditor(Date.class,
-                new CustomDateEditor(new SimpleDateFormat("yyyy-mm-dd"), true, 10));
-
-    }
-
     @GetMapping("/achievement")
     public String achievement(Model model) {
         model.addAttribute("dataAchievement", achievementService.findAllAchievement());
+        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
         return "achievement";
     }
 

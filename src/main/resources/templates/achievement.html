@@ -216,9 +216,12 @@
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label for="id" class="col-form-label col-md-4">Employee</label>
+                            <label for="idEmployee" class="col-form-label col-md-4">Employee</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="idEmployee" name="idEmployee" placeholder="Employee">
+                                <select type="text" name="idEmployee" id="idEmployee" class="form-control" >
+                                    <option value="0">-PILIH-</option>
+                                    <option th:each="data:${dataEmployee}" th:value="${data.id}" th:text="${data.firstName}"></option>
+                                </select>
                             </div>
                         </div>
 
@@ -259,13 +262,15 @@
                                 </div>
                                 <div class="form-group required">
                                     <label for="dateAchiev" class="col-form-label">Date</label>
-                                    <input type="text" class="form-control" id="_datepiker" name="dateAchiev" placeholder="yyyy-mm-dd">
+                                    <input type="date" class="form-control" id="dateAchiev" name="dateAchiev" placeholder="Date">
                                 </div>
                                 <div class="form-group required">
-                                    <label for="id" class="col-form-label">Employee</label>
-                                    <input type="text" class="form-control" id="idEmployee" name="idEmployee" placeholder="Employee">
+                                    <label for="idEmployee" class="col-form-label">Employee</label>
+                                    <select type="text" name="idEmployee" id="idEmployee" class="form-control" >
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataEmployee}" th:value="${data.id}" th:text="${data.firstName}"></option>
+                                    </select>
                                 </div>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -301,7 +306,7 @@
                             <div class="modal-body">
 
                                 <input type="hidden" class="form-control" id="id" name="id" readonly>
-                               
+
                                 Anda yakin ingin menghapus data ini?
 
                             </div>

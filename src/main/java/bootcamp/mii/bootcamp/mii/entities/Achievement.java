@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -59,6 +60,7 @@ public class Achievement implements Serializable {
     private String description;
     @Basic(optional = false)
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_achiev")
     @Temporal(TemporalType.DATE)
     private Date dateAchiev;
