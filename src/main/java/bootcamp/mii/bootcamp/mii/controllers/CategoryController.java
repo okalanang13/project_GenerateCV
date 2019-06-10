@@ -36,6 +36,7 @@ public class CategoryController {
     @PostMapping("/addcategory")
 
     public String addcategory(@Valid Category category) {
+        category.setId(0);
         category.setIsDelete('0');
         categoryRepository.save(category);
         return "redirect:/category";
