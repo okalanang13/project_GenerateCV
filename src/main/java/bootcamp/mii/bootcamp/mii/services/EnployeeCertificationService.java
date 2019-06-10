@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.services;
 
 import bootcamp.mii.bootcamp.mii.entities.EmployeeCertification;
 import bootcamp.mii.bootcamp.mii.repositories.EmployeeCertificationRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class EnployeeCertificationService {
     @Autowired
     private EmployeeCertificationRepository employeeCertificationRepository;
     
-    public Iterable<EmployeeCertification> findAllEmployeeCertification(){
-        return employeeCertificationRepository.findAll();
+    public List<EmployeeCertification> findAllEmployeeCertification(){
+        return employeeCertificationRepository.findAllEmployeeCertification();
     }
 }

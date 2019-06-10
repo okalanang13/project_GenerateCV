@@ -149,25 +149,29 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Action</th>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Password</th>
+                                <th>ID Employee</th>
                                 <th>Employee</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each = "data:${dataUsers}">
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-user"><i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
                                 <td id="id" th:text="${data.id}"></td>
                                 <td id="username" th:text="${data.username}"></td>
                                 <td id="email" th:text="${data.email}"></td>
-                                <td id="idEmployee" th:text="${data.idEmployee.firstName}"></td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#edit-user"><i class="fa fa-edit"></i>
-                                        Edit</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#softdelete"><i class="fa fa-trash"></i>
-                                        Delete</button>
-                                </td>
+                                <td id="password" th:text="${data.password}"></td>
+                                <td id="idEmployee" th:text="${data.idEmployee.id}"></td>
+                                <td id="nameEmployee" th:text="${data.idEmployee.firstName}"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -200,6 +204,17 @@
                                 <div class="form-group required">
                                     <label for="password" class="col-form-label">Password</label>
                                     <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="form-group required">
+                                    <label for="email" class="col-form-label">email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Password">
+                                </div>
+                                <div class="form-group required">
+                                    <label for="idEmployee" class="col-form-label">Employee</label>
+                                    <select type="text" name="idEmployee" id="idEmployee" class="form-control" >
+                                        <option value="0">-PILIH-</option>
+                                        <option th:each="data:${dataEmployee}" th:value="${data.id}" th:text="${data.firstName}"></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -240,6 +255,7 @@
                                 <input type="hidden" class="form-control" id="username" name="username">
                                 <input type="hidden" class="form-control" id="password" name="password">
                                 <input type="hidden" class="form-control" id="email" name="email">
+                                <input type="hidden" class="form-control" id="idEmployee" name="idEmployee">
 
                                 Anda yakin ingin menghapus data ini?
 
@@ -291,13 +307,22 @@
 
                     var _id = _row.find("#id").text();
                     var _username = _row.find("#username").text();
+                    var _email = _row.find("#email").text();
+                    var _password = _row.find("#password").text();
+                    var _idEmployee = _row.find("#idEmployee").text();
+                    var _nameEmployee = _row.find("#nameEmployee").text();
 
                     $(this).find("#id").val(_id);
                     $(this).find("#username").val(_username);
+                    $(this).find("#email").val(_email);
+                    $(this).find("#password").val(_password);
+                    $(this).find("#idEmployee").val(_idEmployee);
+                    $(this).find("#nameEmployee").val(_nameEmployee);
+
                 })
             })
         </script>
-        <script>
+                <script>
             $(document).ready(function () {
                 $("#softdelete").on('show.bs.modal', function (e) {
                     var _button = $(e.relatedTarget);
@@ -305,9 +330,18 @@
 
                     var _id = _row.find("#id").text();
                     var _username = _row.find("#username").text();
+                    var _email = _row.find("#email").text();
+                    var _password = _row.find("#password").text();
+                    var _idEmployee = _row.find("#idEmployee").text();
+                    var _nameEmployee = _row.find("#nameEmployee").text();
 
                     $(this).find("#id").val(_id);
                     $(this).find("#username").val(_username);
+                    $(this).find("#email").val(_email);
+                    $(this).find("#password").val(_password);
+                    $(this).find("#idEmployee").val(_idEmployee);
+                    $(this).find("#nameEmployee").val(_nameEmployee);
+
                 })
             })
         </script>

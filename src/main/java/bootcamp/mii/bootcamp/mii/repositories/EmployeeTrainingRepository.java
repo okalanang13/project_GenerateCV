@@ -5,7 +5,6 @@
  */
 package bootcamp.mii.bootcamp.mii.repositories;
 
-import bootcamp.mii.bootcamp.mii.entities.Achievement;
 import bootcamp.mii.bootcamp.mii.entities.EmployeeTraining;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;

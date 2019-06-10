@@ -6,8 +6,12 @@
 package bootcamp.mii.bootcamp.mii.controllers;
 
 import bootcamp.mii.bootcamp.mii.entities.EmployeeCertification;
+import bootcamp.mii.bootcamp.mii.entities.EmployeeTraining;
 import bootcamp.mii.bootcamp.mii.repositories.EmployeeCertificationRepository;
+import bootcamp.mii.bootcamp.mii.services.CertificationService;
+import bootcamp.mii.bootcamp.mii.services.EmployeeService;
 import bootcamp.mii.bootcamp.mii.services.EnployeeCertificationService;
+import bootcamp.mii.bootcamp.mii.services.TrainingService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,26 +30,45 @@ public class EmployeeCertificationController {
 
     @Autowired
     private EmployeeCertificationRepository employeeCertificationRepository;
+    
+    @Autowired
+    private EmployeeService employeeService;
+    
+    @Autowired
+    private CertificationService certificationService;
 
     @GetMapping("/employeecertification")
     public String employeecertification(Model model) {
         model.addAttribute("dataEC", employeeCertificationService.findAllEmployeeCertification());
+        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
+        model.addAttribute("dataCertification", certificationService.findAllCertification());
         return "employeecertification";
+        
     }
 
     @PostMapping("/addemployeecertification")
 
     public String addemployeecertification(@Valid EmployeeCertification employee) {
+        employee.setId(0);
         employee.setIsDelete('0');
         employeeCertificationRepository.save(employee);
         return "redirect:/employeecertification";
 
     }
 
-    @GetMapping("/updateemployeecertification")
+    @PostMapping("/updateemployeecertification")
 
     public String updateemployeecertification(@Valid EmployeeCertification e ) {
         e.setIsDelete('0');
+        employeeCertificationRepository.save(e);
+        return "redirect:/employeecertification";
+
+    }
+    
+     @GetMapping("/deleteemployeecertification")
+
+    public String deleteemployeecertification(@Valid EmployeeCertification e) {
+        e.setIsDelete('1');
         employeeCertificationRepository.save(e);
         return "redirect:/employeecertification";
 

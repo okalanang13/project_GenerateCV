@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -60,11 +61,13 @@ public class Organization implements Serializable {
     private String position;
     @Basic(optional = false)
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
     private Date startDate;
     @Basic(optional = false)
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "end_date")
     @Temporal(TemporalType.DATE)
     private Date endDate;
@@ -169,5 +172,5 @@ public class Organization implements Serializable {
     public String toString() {
         return "bootcamp.mii.bootcamp.mii.entities.Organization[ id=" + id + " ]";
     }
-    
+
 }

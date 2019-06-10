@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.controllers;
 
 import bootcamp.mii.bootcamp.mii.entities.Organization;
 import bootcamp.mii.bootcamp.mii.repositories.OrganizationRepository;
+import bootcamp.mii.bootcamp.mii.services.EmployeeService;
 import bootcamp.mii.bootcamp.mii.services.OrganizationService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,26 +33,22 @@ public class OrganizationController {
     private OrganizationService organizationService;
 
     @Autowired
+    private EmployeeService employeeService;
+    
+    @Autowired
     private OrganizationRepository organizationRepository;
-
-    @InitBinder
-
-    public void initBinder(WebDataBinder binder) {
-
-        binder.registerCustomEditor(Date.class,
-                new CustomDateEditor(new SimpleDateFormat("yyyy-mm-dd"), true, 10));
-
-    }
 
     @GetMapping("/organization")
     public String organization(Model model) {
         model.addAttribute("dataorganization", organizationService.findAllOrganization());
+        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
         return "organization";
     }
 
     @PostMapping("/addorganization")
 
     public String addorganization(@Valid Organization organization) {
+        organization.setId(0);
         organization.setIsDelete('0');
         organizationRepository.save(organization);
         return "redirect:/organization";
@@ -66,11 +63,12 @@ public class OrganizationController {
         return "redirect:/organization";
 
     }
-    
-    @GetMapping("/deleteorganization/{id}")
 
-    public String deleteorganization(@PathVariable("id") String id,Organization o) {
-        organizationRepository.delete(o);
+    @GetMapping("/deleteorganization")
+
+    public String deleteorganization(@Valid Organization organization) {
+        organization.setIsDelete('1');
+        organizationRepository.save(organization);
         return "redirect:/organization";
 
     }

@@ -37,6 +37,7 @@ public class RoleController {
     @PostMapping("/addrole")
 
     public String addrole(@Valid Authority role) {
+        role.setId(0);
         role.setIsDelete('0');
         roleRepository.save(role);
         return "redirect:/role";

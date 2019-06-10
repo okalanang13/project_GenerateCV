@@ -7,6 +7,7 @@ package bootcamp.mii.bootcamp.mii.controllers;
 
 import bootcamp.mii.bootcamp.mii.entities.Users;
 import bootcamp.mii.bootcamp.mii.repositories.UsersRepository;
+import bootcamp.mii.bootcamp.mii.services.EmployeeService;
 import bootcamp.mii.bootcamp.mii.services.UsersService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UsersController {
 
     @Autowired
     private UsersService usersService;
+    
+    @Autowired
+    private EmployeeService employeeService;
 
     @Autowired
     private UsersRepository usersRepository;
@@ -32,20 +36,10 @@ public class UsersController {
     @GetMapping("/users")
     public String users(Model model) {
         model.addAttribute("dataUsers", usersService.findAllUsers());
+        model.addAttribute("dataEmployee", employeeService.findAllEmployee());
         return "users";
     }
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
-    @PostMapping("/addusers")
-
-    public String addusers(@Valid Users users) {
-
-        users.setPassword(bCryptPasswordEncoder.encode("password"));
-        users.setIsDelete('0');
-        usersRepository.save(users);
-        return "redirect:/users";
-
-    }
 
     @PostMapping("/updateusers")
 
