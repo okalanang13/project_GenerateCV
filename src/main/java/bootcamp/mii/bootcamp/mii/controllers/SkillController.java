@@ -42,6 +42,7 @@ public class SkillController {
     @PostMapping("/addskill")
 
     public String addskill(@Valid Skill skill) {
+        skill.setId(0);
         skill.setIsDelete('0');
         skillRepository.save(skill);
         return "redirect:/skill";
