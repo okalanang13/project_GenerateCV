@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author ASUS
  */
 @Service
-public class EnployeeCertificationService {
+public class EnployeeCertificationService { //TYPO
     @Autowired
     private EmployeeCertificationRepository employeeCertificationRepository;
     
